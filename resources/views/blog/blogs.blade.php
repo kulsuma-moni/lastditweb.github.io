@@ -464,12 +464,12 @@
 				<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
 					<div class="new_post_filter_btn text-center">
 						<ul>
-							<li><a href="#" class="btn default" data-filter>all</a></li>
-							<li><a href="#" class="btn default" data-filter="design">design</a></li>
-							<li><a href="#" class="btn default" data-filter="devlopment">development</a></li>
-							<li><a href="#" class="btn default" data-filter="programming">programming</a></li>
-							<li><a href="#" class="btn default" data-filter="appdev">app development</a></li>
-							<li><a href="#" class="btn default" data-filter="wordpress">wordpress</a></li>
+							<li><a href="#0" class="btn default" data-filter>all</a></li>
+							<li><a href="#0" class="btn default" data-filter="design">design</a></li>
+							<li><a href="#0" class="btn default" data-filter="development">development</a></li>
+							<li><a href="#0" class="btn default" data-filter="programming">programming</a></li>
+							<li><a href="#0" class="btn default" data-filter="appdev">app development</a></li>
+							<li><a href="#0" class="btn default" data-filter="wordpress">wordpress</a></li>
 						</ul>
 					</div>
 				</div>
@@ -477,92 +477,100 @@
             <div class="row">
                <div class="col-xl-3 col-lg-3 col-md-6 col-sm-6 col-12">
                   <div class="trendy_post_box" data-tags="design,programming">
-                     <div class="tp_img">
-                        <img src="{{ asset('public/frontend/assets/images/Frame 14.png') }}" alt="">
-                     </div>
-                     <div class="blog_info">
-                        <div class="titel new_post_titel">
-                           <h3>Hac eget non odio donec vestibulum maecenas. Enim sed ullamcorper amet...</h3>
+                     <a href="#">
+                        <div class="tp_img">
+                           <img src="{{ asset('public/frontend/assets/images/Frame 14.png') }}" alt="">
                         </div>
-                        <div class="author_info">
-                           <div class="author_img">
-                              <img src="{{asset('public/frontend/assets/images/Rectangle 1764.png')}}" alt="">
+                        <div class="blog_info">
+                           <div class="titel new_post_titel">
+                              <h3>Hac eget non odio donec vestibulum maecenas. Enim sed ullamcorper amet...</h3>
                            </div>
-                           <div class="author_details">
-                              <h6>Awlad Hossin</h6>
-                              <span>Top Rated Freelancer</span>
+                           <div class="author_info">
+                              <div class="author_img">
+                                 <img src="{{asset('public/frontend/assets/images/Rectangle 1764.png')}}" alt="">
+                              </div>
+                              <div class="author_details">
+                                 <h6>Awlad Hossin</h6>
+                                 <span>Top Rated Freelancer</span>
+                              </div>
                            </div>
                         </div>
-                     </div>
+                      </a>
                   </div>
                </div>
                <div class="col-xl-3 col-lg-3 col-md-6 col-sm-6 col-12">
                   <div class="trendy_post_box" data-tags="appdev">
-                     <div class="tp_img">
-                        <img src="{{ asset('public/frontend/assets/images/Frame 14.png') }}" alt="">
-                     </div>
-                     <div class="blog_info">
-                        <div class="titel new_post_titel">
-                           <h3>Hac eget non odio donec vestibulum maecenas. Enim sed ullamcorper amet...</h3>
+                     <a href="#">
+                        <div class="tp_img">
+                           <img src="{{ asset('public/frontend/assets/images/Frame 14.png') }}" alt="">
                         </div>
-                        <div class="author_info">
-                           <div class="author_img">
-                              <img src="{{asset('public/frontend/assets/images/Rectangle 1764.png')}}" alt="">
+                        <div class="blog_info">
+                           <div class="titel new_post_titel">
+                              <h3>Hac eget non odio donec vestibulum maecenas. Enim sed ullamcorper amet...</h3>
                            </div>
-                           <div class="author_details">
-                              <h6>Awlad Hossin</h6>
-                              <span>Top Rated Freelancer</span>
+                           <div class="author_info">
+                              <div class="author_img">
+                                 <img src="{{asset('public/frontend/assets/images/Rectangle 1764.png')}}" alt="">
+                              </div>
+                              <div class="author_details">
+                                 <h6>Awlad Hossin</h6>
+                                 <span>Top Rated Freelancer</span>
+                              </div>
                            </div>
                         </div>
-                     </div>
+                     </a>
                   </div>
                </div>
                <div class="col-xl-3 col-lg-3 col-md-6 col-sm-6 col-12">
-                  <div class="trendy_post_box" data-tags="wordpress">
-                     <div class="tp_img">
-                        <img src="{{ asset('public/frontend/assets/images/Frame 14.png') }}" alt="">
-                     </div>
-                     <div class="blog_info">
-                        <div class="titel new_post_titel">
-                           <h3>Hac eget non odio donec vestibulum maecenas. Enim sed ullamcorper amet...</h3>
+                  <div class="trendy_post_box" data-tags="wordpress,development">
+                     <a href="#">
+                        <div class="tp_img">
+                           <img src="{{ asset('public/frontend/assets/images/Frame 14.png') }}" alt="">
                         </div>
-                        <div class="author_info">
-                           <div class="author_img">
-                              <img src="{{asset('public/frontend/assets/images/Rectangle 1764.png')}}" alt="">
+                        <div class="blog_info">
+                           <div class="titel new_post_titel">
+                              <h3>Hac eget non odio donec vestibulum maecenas. Enim sed ullamcorper amet...</h3>
                            </div>
-                           <div class="author_details">
-                              <h6>Awlad Hossin</h6>
-                              <span>Top Rated Freelancer</span>
+                           <div class="author_info">
+                              <div class="author_img">
+                                 <img src="{{asset('public/frontend/assets/images/Rectangle 1764.png')}}" alt="">
+                              </div>
+                              <div class="author_details">
+                                 <h6>Awlad Hossin</h6>
+                                 <span>Top Rated Freelancer</span>
+                              </div>
                            </div>
                         </div>
-                     </div>
+                     </a>
                   </div>
                </div>
                <div class="col-xl-3 col-lg-3 col-md-6 col-sm-6 col-12">
                   <div class="trendy_post_box" data-tags="development">
-                     <div class="tp_img">
-                        <img src="{{ asset('public/frontend/assets/images/Frame 14.png') }}" alt="">
-                     </div>
-                     <div class="blog_info">
-                        <div class="titel new_post_titel">
-                           <h3>Hac eget non odio donec vestibulum maecenas. Enim sed ullamcorper amet...</h3>
+                     <a href="#">
+                        <div class="tp_img">
+                           <img src="{{ asset('public/frontend/assets/images/Frame 14.png') }}" alt="">
                         </div>
-                        <div class="author_info">
-                           <div class="author_img">
-                              <img src="{{asset('public/frontend/assets/images/Rectangle 1764.png')}}" alt="">
+                        <div class="blog_info">
+                           <div class="titel new_post_titel">
+                              <h3>Hac eget non odio donec vestibulum maecenas. Enim sed ullamcorper amet...</h3>
                            </div>
-                           <div class="author_details">
-                              <h6>Awlad Hossin</h6>
-                              <span>Top Rated Freelancer</span>
+                           <div class="author_info">
+                              <div class="author_img">
+                                 <img src="{{asset('public/frontend/assets/images/Rectangle 1764.png')}}" alt="">
+                              </div>
+                              <div class="author_details">
+                                 <h6>Awlad Hossin</h6>
+                                 <span>Top Rated Freelancer</span>
+                              </div>
                            </div>
                         </div>
-                     </div>
+                     </a>
                   </div>
                </div>
             </div>
          </div>
       </section>
-      <!-- End Trending Post Area -->
+      <!-- End New Post Area -->
       <!-- Start All Post Area -->
       <section class="blog_page_ctn">
          <div class="container">
@@ -904,8 +912,8 @@
                   <p>We are the makers of Future Leaders!</p>
                </div>
             </div>
-            <div class="row">
-               <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-12">
+            <div class="top_author_slider owl-carousel" id="top_author_slider">
+               <div class="item">
                   <div class="top_author">
                      <div class="author_img">
                         <img src="{{asset('public/frontend/assets/images/Frame 25.png')}}" alt="">
@@ -916,7 +924,7 @@
                      </div>
                   </div>
                </div>
-               <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-12">
+               <div class="item">
                   <div class="top_author">
                      <div class="author_img">
                         <img src="{{asset('public/frontend/assets/images/Frame 25.png')}}" alt="">
@@ -927,7 +935,7 @@
                      </div>
                   </div>
                </div>
-               <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-12">
+               <div class="item">
                   <div class="top_author">
                      <div class="author_img">
                         <img src="{{asset('public/frontend/assets/images/Frame 25.png')}}" alt="">
@@ -938,7 +946,18 @@
                      </div>
                   </div>
                </div>
-               <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-12">
+               <div class="item">
+                  <div class="top_author">
+                     <div class="author_img">
+                        <img src="{{asset('public/frontend/assets/images/Frame 25.png')}}" alt="">
+                     </div>
+                     <div class="author_detail text-center">
+                        <h5>Taklo miah</h5>
+                        <span>Story writer</span>
+                     </div>
+                  </div>
+               </div>
+               <div class="item">
                   <div class="top_author">
                      <div class="author_img">
                         <img src="{{asset('public/frontend/assets/images/Frame 25.png')}}" alt="">

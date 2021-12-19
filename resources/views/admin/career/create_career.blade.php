@@ -1,7 +1,7 @@
 @extends('admin.layouts.app')
 
 
-@section('title','Create Freelancer')
+@section('title','Create Career')
 
 
 @section('content')
@@ -13,8 +13,8 @@
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-md-12">
-                        <h4 class="header-title mb-4" style="float: left;">Add New Freelancer</h4>
-                        <h4 class="header-title mb-4" style="float: right;"><a href="{{ route('index.freelancer') }}" class="btn btn-outline-primary">All Freelancer List</a></h4>
+                        <h4 class="header-title mb-4" style="float: left;">Add New Job</h4>
+                        <h4 class="header-title mb-4" style="float: right;"><a href="{{ route('index.career') }}" class="btn btn-outline-primary">All Job List</a></h4>
                     </div>
                 </div>
                 @if(session('success'))
@@ -40,22 +40,20 @@
                 <div class="card-box">
 
                     <br><br>
-                    <form method="post" action="{{ route('store.freelancer') }}" enctype="multipart/form-data">
+                    <form method="post" action="{{ route('store.career') }}" enctype="multipart/form-data">
                         @csrf
                         <div class="form-group row">
-                            <label for="name" class="col-3 col-form-label">Name *</label>
-                            <div class="col-9">
-                                <input type="text" id="name" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}">
-                                @error('name')
+                            <div class="col-6">
+                            <label for="title" class="col-3 col-form-label">Job Title *</label>
+                                <input type="text" id="name" class="form-control @error('title') is-invalid @enderror" name="title" value="{{ old('title') }}">
+                                @error('title')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
                                 </span>
                                 @enderror
                             </div>
-                        </div>
-                        <div class="form-group row">
+                            <div class="col-6">
                             <label for="slug" class="col-3 col-form-label">Slug *</label>
-                            <div class="col-9">
                                 <input type="text" id="slug" class="form-control @error('slug') is-invalid @enderror" name="slug"  value="{{ old('slug') }}">
                                 @error('slug')
                                 <span class="invalid-feedback" role="alert">
@@ -65,41 +63,25 @@
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label for="email" class="col-3 col-form-label">Email *</label>
-                            <div class="col-9">
-                                <input type="text" id="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}">
-                                @error('email')
+                            <div class="col-4">
+                            <label for="experience_year" class=" col-form-label">Experience Year</label>
+                                <select type="text" id="experience_year" class="form-control @error('experience_year') is-invalid @enderror" name="experience_year" value="{{ old('experience_year') }}">
+                                    <option>No Experience</option>
+                                    <option>Up to 1 year</option>
+                                    <option>Up to 2 years</option>
+                                    <option>Up to 3 years</option>
+                                    <option>Up to 5 years</option>
+                                    <option>Up to 10 years</option>
+                                </select>
+                                @error('experience_year')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
                                 </span>
                                 @enderror
                             </div>
-                        </div>
-                        <div class="form-group row">
-                            <label for="phone" class="col-3 col-form-label">Phone *</label>
-                            <div class="col-9">
-                                <input type="text" id="phone" class="form-control @error('phone') is-invalid @enderror" name="phone" value="{{ old('phone') }}">
-                                @error('phone')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                                @enderror
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label for="profession" class="col-3 col-form-label">Profession *</label>
-                            <div class="col-9">
-                                <input type="text" id="profession" class="form-control @error('profession') is-invalid @enderror" name="profession" value="{{ old('profession') }}">
-                                @error('profession')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                                @enderror
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label for="division_id" class="col-3 col-form-label">Division</label>
-                            <div class="col-9">
+
+                            <div class="col-4">
+                            <label for="division_id" class=" col-form-label">Division</label>
                                 <select id="division_id" class="form-control @error('division_id') is-invalid @enderror" name="division_id"  value="{{ old('division_id') }}">
                                     <option value="">Select Division First</option>
                                     @foreach($divisions as $division)
@@ -113,10 +95,9 @@
                                 </span>
                                 @enderror
                             </div>
-                        </div>
-                        <div class="form-group row">
-                            <label for="district_id" class="col-3 col-form-label">District</label>
-                            <div class="col-9">
+
+                            <div class="col-4">
+                            <label for="district_id" class=" col-form-label">District</label>
                                 <select id="district_id" class="form-control @error('district_id') is-invalid @enderror" name="district_id"  value="{{ old('district_id') }}">
                                     @foreach($districts as $district)
                                     @endforeach
@@ -129,10 +110,28 @@
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label for="image" class="col-3 col-form-label">Profile Image</label>
-                            <div class="col-9">
-                                <input type="file" id="image" class="form-control @error('image') is-invalid @enderror" name="image"  value="{{ old('image') }}">
-                                @error('image')
+                            <div class="col-4">
+                            <label for="phone" class=" col-form-label">Phone</label>
+                                <input type="text" id="phone" class="form-control @error('phone') is-invalid @enderror" name="phone" value="{{ old('phone') }}">
+                                @error('phone')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                                @enderror
+                            </div>
+                            <div class="col-4">
+                            <label for="job_time" class=" col-form-label">Job Time</label>
+                                <input type="text" id="job_time" class="form-control @error('job_time') is-invalid @enderror" name="job_time" value="{{ old('job_time') }}">
+                                @error('job_time')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                                @enderror
+                            </div>
+                            <div class="col-4">
+                            <label for="job_type" class="col-form-label">Job Type</label>
+                                <input type="text" id="job_type" class="form-control @error('job_type') is-invalid @enderror" name="job_type" value="{{ old('job_type') }}">
+                                @error('job_type')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
                                 </span>
@@ -140,10 +139,55 @@
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label for="career_obj" class="col-3 col-form-label">Career Objectives</label>
-                            <div class="col-9">
-                                <textarea name="career_obj" class="form-control @error('career_obj') is-invalid @enderror" cols="30" rows="10">{{ old('career_obj') }}</textarea>
-                                @error('career_obj')
+                            <div class="col-4">
+                            <label for="shift" class=" col-form-label">Shift</label>
+                                <input type="text" id="shift" class="form-control @error('shift') is-invalid @enderror" name="shift" value="{{ old('shift') }}">
+                                @error('shift')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                                @enderror
+                            </div>
+                            <div class="col-4">
+                            <label for="salary" class=" col-form-label">Salary </label>
+                                <input type="text" id="salary" class="form-control @error('salary') is-invalid @enderror" name="salary" value="{{ old('salary') }}">
+                                @error('salary')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                                @enderror
+                            </div>
+                            <div class="col-4">
+                            <label for="deadline" class="col-form-label">Deadline</label>
+                                <input type="date" id="deadline" class="form-control @error('deadline') is-invalid @enderror" name="deadline" value="{{ old('deadline') }}">
+                                @error('deadline')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                                @enderror
+                            </div>
+                        </div>
+
+
+
+
+                        <div class="form-group row">
+                            <div class="col-12">
+                            <label for="responsibility" class="col-form-label">Responsibility</label>
+                                <textarea name="responsibility" id="editor" class="form-control @error('responsibility') is-invalid @enderror" cols="30" rows="10">{{ old('responsibility') }}</textarea>
+                                @error('responsibility')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                                @enderror
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <div class="col-12">
+                            <label for="requirement" class="col-form-label">Requirement</label>
+                                <textarea name="requirement" id="editor1" class="form-control @error('requirement') is-invalid @enderror" cols="30" rows="10">{{ old('requirement') }}</textarea>
+                                @error('requirement')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
                                 </span>
@@ -151,75 +195,51 @@
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label for="expert_in" class="col-3 col-form-label">Expert In</label>
-                            <div class="col-9">
-                                <textarea name="expert_in" id="editor12" class="form-control @error('expert_in') is-invalid @enderror" cols="30" rows="10">{{ old('expert_in') }}</textarea>
-                                @error('expert_in')
+                            <div class="col-12">
+                            <label for="benefit" class="col-form-label">Benefit</label>
+                                <textarea name="benefit" id="editor2" class="form-control @error('benefit') is-invalid @enderror" cols="30" rows="10">{{ old('benefit') }}</textarea>
+                                @error('benefit')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
                                 </span>
                                 @enderror
                             </div>
                         </div>
+
                         <div class="form-group row">
-                            <label for="image2" class="col-3 col-form-label">Experience Image</label>
-                            <div class="col-9">
-                                <input type="file" id="image2" class="form-control @error('image2') is-invalid @enderror" name="image2"  value="{{ old('image2') }}">
-                                @error('image2')
+                            <div class="col-4">
+                            <label for="address" class=" col-form-label">Location</label>
+                                <textarea name="address" class="form-control @error('address') is-invalid @enderror" cols="30" rows="5">{{ old('address') }}</textarea>
+                                @error('address')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
                                 </span>
                                 @enderror
                             </div>
-                        </div>
-                        <div class="form-group row">
-                            <label for="description" class="col-3 col-form-label">Description </label>
-                            <div class="col-9">
-                                <textarea name="description" id="editor" class="form-control @error('description') is-invalid @enderror" cols="30" rows="10">{{ old('description') }}</textarea>
+                            <div class="col-4">
+                            <label for="description" class=" col-form-label">Description</label>
+                                <textarea name="description" class="form-control @error('description') is-invalid @enderror" cols="30" rows="5">{{ old('description') }}</textarea>
                                 @error('description')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
                                 </span>
                                 @enderror
                             </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <label for="image3" class="col-3 col-form-label">Description Image</label>
-                            <div class="col-9">
-                                <input type="file" id="image3" class="form-control @error('image3') is-invalid @enderror" name="image3"  value="{{ old('image3') }}">
-                                @error('image3')
+                            <div class="col-4">
+                            <label for="note" class=" col-form-label">Note</label>
+                                <textarea name="note" class="form-control @error('note') is-invalid @enderror" cols="30" rows="5">{{ old('note') }}</textarea>
+                                @error('note')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
                                 </span>
                                 @enderror
                             </div>
                         </div>
-                        <div class="form-group row">
-                            <label for="experience_year" class="col-3 col-form-label">Experience Year</label>
-                            <div class="col-9">
-                                <select id="experience_year" class="form-control @error('experience_year') is-invalid @enderror" name="experience_year"  value="{{ old('experience_year') }}">
-                                    <option value="1">1 year</option>
-                                    <option value="2">2 years</option>
-                                    <option value="3">3 years</option>
-                                    <option value="4">4 years</option>
-                                    <option value="5-10">5-10 years</option>
-                                    <option value="10-15">10-15 years</option>
-                                    <option value="15+">10-15 years</option>
-
-                                </select>
-                                @error('experience_year')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                                @enderror
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label for="link" class="col-3 col-form-label">Resume Link*</label>
-                            <div class="col-9">
-                                <input type="number" id="link" class="form-control @error('link') is-invalid @enderror" name="link"  value="{{ old('link') }}">
-                                @error('link')
+                        <div class="row">
+                            <div class="col-12">
+                            <label for="file" class=" col-form-label">File</label>
+                                <input type="file" id="file" class="form-control @error('file') is-invalid @enderror" name="file"  value="{{ old('file') }}">
+                                @error('file')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
                                 </span>
@@ -230,10 +250,21 @@
                         <hr>
 
                         <div class="form-group row">
-                            <label for="meta_tag" class="col-3 col-form-label">Meta Tag *</label>
-                            <div class="col-9">
-                                <textarea name="meta_tag" class="form-control @error('meta_tag') is-invalid @enderror" cols="30" rows="10">{{ old('meta_tag') }}</textarea>
+
+                            <div class="col-12">
+                            <label for="meta_tag" class=" col-form-label">Meta Tag</label>
+                                <input type="text" id="meta_tag" class="form-control @error('meta_tag') is-invalid @enderror" name="meta_tag" value="{{ old('meta_tag') }}">
                                 @error('meta_tag')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                                @enderror
+                            </div>
+
+                            <div class="col-12">
+                            <label for="meta_description" class="col-3 col-form-label">Meta Description</label>
+                                <textarea name="meta_description" class="form-control @error('meta_description') is-invalid @enderror" cols="30" rows="10">{{ old('meta_description') }}</textarea>
+                                @error('meta_description')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
                                 </span>
@@ -279,17 +310,20 @@
         })
     })
 </script>
+
 <script>
     ClassicEditor
         .create(document.querySelector('#editor'))
         .catch(error => {
             console.error(error);
         });
-</script>
-
-<script>
     ClassicEditor
-        .create(document.querySelector('#editor12'))
+        .create(document.querySelector('#editor1'))
+        .catch(error => {
+            console.error(error);
+        });
+    ClassicEditor
+        .create(document.querySelector('#editor2'))
         .catch(error => {
             console.error(error);
         });
@@ -311,5 +345,3 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-tagsinput/0.8.0/bootstrap-tagsinput.js" integrity="sha512-VvWznBcyBJK71YKEKDMpZ0pCVxjNuKwApp4zLF3ul+CiflQi6aIJR+aZCP/qWsoFBA28avL5T5HA+RE+zrGQYg==" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-tagsinput/0.8.0/bootstrap-tagsinput-angular.min.js" integrity="sha512-KT0oYlhnDf0XQfjuCS/QIw4sjTHdkefv8rOJY5HHdNEZ6AmOh1DW/ZdSqpipe+2AEXym5D0khNu95Mtmw9VNKg==" crossorigin="anonymous"></script> --}}
 @endsection
-
-

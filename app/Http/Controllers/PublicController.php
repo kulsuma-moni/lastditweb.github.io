@@ -13,6 +13,9 @@ use App\Models\Admin\Course;
 use App\Models\Admin\Portfoliocate;
 use App\Models\Admin\Portfolio;
 use App\Models\Admin\Service;
+use App\Models\User\Freelancer;
+use App\Models\User\Entrepreneur;
+use App\Models\Admin\Career;
 use App\Models\Contact;
 use Carbon\CarbonPeriod;
 
@@ -46,6 +49,44 @@ class PublicController extends Controller
         $course = Course::where('slug',$slug)->first();
         $courses = Course::where('status',1)->get();
         return view('course.single_course',compact('courses','course'));
+    }
+
+
+    public function freelancers()
+    {
+        $freelancers = Freelancer::latest()->get();
+        return view('freelancer.freelancers',compact('freelancers'));
+    }
+
+    public function freelancerSingle($slug)
+    {
+        $freelancer = Freelancer::where('slug',$slug)->first();
+        return view('freelancer.single_freelancer',compact('freelancer'));
+    }
+
+
+    public function careers()
+    {
+        $careers = career::latest()->get();
+        return view('career.careers',compact('careers'));
+    }
+
+    public function careerSingle($slug)
+    {
+        $career = career::where('slug',$slug)->first();
+        return view('career.single_career',compact('career'));
+    }
+
+    public function entrepreneurs()
+    {
+        $entrepreneurs = entrepreneur::latest()->get();
+        return view('entrepreneur.entrepreneurs',compact('entrepreneurs'));
+    }
+
+    public function entrepreneurSingle($slug)
+    {
+        $entrepreneur = entrepreneur::where('slug',$slug)->first();
+        return view('entrepreneur.single_entrepreneur',compact('entrepreneur'));
     }
 
     public function portfolios()

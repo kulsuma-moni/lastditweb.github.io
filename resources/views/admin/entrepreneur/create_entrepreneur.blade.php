@@ -1,7 +1,7 @@
 @extends('admin.layouts.app')
 
 
-@section('title','Create Freelancer')
+@section('title','Create Entrepreneur')
 
 
 @section('content')
@@ -13,8 +13,8 @@
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-md-12">
-                        <h4 class="header-title mb-4" style="float: left;">Add New Freelancer</h4>
-                        <h4 class="header-title mb-4" style="float: right;"><a href="{{ route('index.freelancer') }}" class="btn btn-outline-primary">All Freelancer List</a></h4>
+                        <h4 class="header-title mb-4" style="float: left;">Add New Entrepreneur</h4>
+                        <h4 class="header-title mb-4" style="float: right;"><a href="{{ route('index.entrepreneur') }}" class="btn btn-outline-primary">All Entrepreneur List</a></h4>
                     </div>
                 </div>
                 @if(session('success'))
@@ -40,7 +40,7 @@
                 <div class="card-box">
 
                     <br><br>
-                    <form method="post" action="{{ route('store.freelancer') }}" enctype="multipart/form-data">
+                    <form method="post" action="{{ route('store.entrepreneur') }}" enctype="multipart/form-data">
                         @csrf
                         <div class="form-group row">
                             <label for="name" class="col-3 col-form-label">Name *</label>

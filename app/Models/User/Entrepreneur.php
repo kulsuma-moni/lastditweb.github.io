@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use App\Models\Admin\Division;
 use App\Models\Admin\District;
 
-class Freelancer extends Model
+class Entrepreneur extends Model
 {
     use HasFactory;
     protected $guarded = [];

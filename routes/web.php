@@ -17,12 +17,15 @@ use App\Http\Controllers\Admin\SliderController;
 use App\Http\Controllers\Admin\DivisionController;
 use App\Http\Controllers\Admin\DistrictController;
 use App\Http\Controllers\Admin\FreelancerController;
+use App\Http\Controllers\Admin\EntrepreneurController;
 use App\Http\Controllers\Admin\PortfoliocateController;
 use App\Http\Controllers\Admin\PortfolioController;
 use App\Http\Controllers\Admin\ServiceController;
 use App\Http\Controllers\Admin\EditorController;
+use App\Http\Controllers\Admin\CareerController;
 use App\Http\Controllers\User\ProjectController;
 use App\Http\Controllers\StudentController;
+
 
 
 /*
@@ -36,6 +39,7 @@ use App\Http\Controllers\StudentController;
 |
 */
 
+
 Route::get('/layouts', function () {
     return view('admin.layouts.app');
 });
@@ -48,6 +52,15 @@ Route::get('/ceo', [PublicController::class, 'ceo'])->name('ceo');
 
 Route::get('/courses', [PublicController::class, 'courses'])->name('courses');
 Route::get('/course/{course}', [PublicController::class, 'courseSingle'])->name('single.course');
+
+Route::get('/freelancers', [PublicController::class, 'freelancers'])->name('freelancers');
+Route::get('/freelancer/{freelancer}', [PublicController::class, 'freelancerSingle'])->name('single.freelancer');
+
+Route::get('/careers', [PublicController::class, 'careers'])->name('careers');
+Route::get('/career/{career}', [PublicController::class, 'careerSingle'])->name('single.career');
+
+Route::get('/entrepreneurs', [PublicController::class, 'entrepreneurs'])->name('entrepreneurs');
+Route::get('/entrepreneur/{entrepreneur}', [PublicController::class, 'entrepreneurSingle'])->name('single.entrepreneur');
 
 Route::get('/portfolios', [PublicController::class, 'portfolios'])->name('portfolios');
 Route::get('/services', [PublicController::class, 'services'])->name('services');
@@ -198,6 +211,29 @@ Route::middleware(['auth', 'admin'])->group(function () {
 	Route::get('/deactive-freelancer/{freelancer}', [FreelancerController::class, 'deactive'])->name('deactive.freelancer');
 	Route::get('/deactive-freelancer-list', [FreelancerController::class, 'deactiveList'])->name('deactive.freelancer.list');
 
+    //ENTREPRENEUR ROUTES
+	Route::get('/list-entrepreneur', [EntrepreneurController::class, 'index'])->name('index.entrepreneur');
+	Route::get('/create-entrepreneur', [EntrepreneurController::class, 'create'])->name('create.entrepreneur');
+	Route::post('/store-entrepreneur', [EntrepreneurController::class, 'store'])->name('store.entrepreneur');
+	Route::get('/edit-entrepreneur/{entrepreneur}', [EntrepreneurController::class, 'edit'])->name('edit.entrepreneur');
+	Route::post('/update-entrepreneur/{entrepreneur}', [EntrepreneurController::class, 'update'])->name('update.entrepreneur');
+	Route::get('/delete-entrepreneur/{entrepreneur}', [EntrepreneurController::class, 'delete'])->name('delete.entrepreneur');
+	Route::get('/active-entrepreneur/{entrepreneur}', [EntrepreneurController::class, 'active'])->name('active.entrepreneur');
+	Route::get('/deactive-entrepreneur/{entrepreneur}', [EntrepreneurController::class, 'deactive'])->name('deactive.entrepreneur');
+	Route::get('/deactive-entrepreneur-list', [EntrepreneurController::class, 'deactiveList'])->name('deactive.entrepreneur.list');
+
+
+    //CAREER ROUTES
+	Route::get('/list-career', [CareerController::class, 'index'])->name('index.career');
+	Route::get('/create-career', [CareerController::class, 'create'])->name('create.career');
+	Route::post('/store-career', [CareerController::class, 'store'])->name('store.career');
+	Route::get('/edit-career/{career}', [CareerController::class, 'edit'])->name('edit.career');
+	Route::post('/update-career/{career}', [CareerController::class, 'update'])->name('update.career');
+	Route::get('/delete-career/{career}', [CareerController::class, 'delete'])->name('delete.career');
+	Route::get('/active-career/{career}', [CareerController::class, 'active'])->name('active.career');
+	Route::get('/deactive-career/{career}', [CareerController::class, 'deactive'])->name('deactive.career');
+	Route::get('/deactive-career-list', [CareerController::class, 'deactiveList'])->name('deactive.career.list');
+
 
 
 
@@ -271,9 +307,10 @@ Route::middleware(['auth', 'admin'])->group(function () {
 	Route::get('/delete-blog/{blog}', [BlogController::class, 'delete'])->name('delete.blog');
 	Route::get('/active-blog/{blog}', [BlogController::class, 'active'])->name('active.blog');
 	Route::get('/deactive-blog/{blog}', [BlogController::class, 'deactive'])->name('deactive.blog');
-	
 
 
 
+
+Route::get('/fetch-district/{id}', [FreelancerController::class,'fetchDist']);
 
 });

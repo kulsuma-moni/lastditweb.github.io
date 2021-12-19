@@ -4,14 +4,18 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\User\Freelancer;
+use App\Models\Admin\Career;
 use App\Models\Admin\Division;
 use App\Models\Admin\District;
 use Image;
 use Str;
+use Auth;
 
-class FreelancerController extends Controller
+
+class CareerController extends Controller
 {
+
+
     public function __construct()
     {
         $this->middleware('auth');
@@ -19,17 +23,17 @@ class FreelancerController extends Controller
 
     public function index()
     {
-        $freelancers = Freelancer::latest()->get();
+        $careers = career::latest()->get();
         $count = 1;
-        return view('admin.freelancer.index_freelancer',compact('freelancers','count'));
+        return view('admin.career.index_career',compact('careers','count'));
     }
     public function create()
     {
-        $freelancers = Freelancer::latest()->get();
+        $careers = career::latest()->get();
         $divisions = Division::latest()->get();
         $districts = District::latest()->get();
         $count = 1;
-        return view('admin.freelancer.create_freelancer',compact('freelancers','divisions','districts','count'));
+        return view('admin.career.create_career',compact('careers','divisions','districts','count'));
     }
 
 
@@ -37,34 +41,38 @@ class FreelancerController extends Controller
     {
         $data = $request->validate([
 
-            'division_id'=>'required|max:191',
-            'district_id'=>'required|max:191',
-            'name'=>'required|max:191',
-            'slug'=>'required|max:191|unique:freelancers',
-            'email'=>'required|max:191|unique:freelancers',
-            'phone'=>'required|max:15',
-            'profession'=>'required|max:191',
-            'expart_in'=>'',
-            'career_obj'=>'',
+            
+            'division_id'=>'required|max:11|integer',
+            'district_id'=>'required|max:11|integer',
+            'title'=>'required|max:191',
+            'slug'=>'required|max:191',
             'experience_year'=>'max:191',
+            'address'=>'max:191',
+            'job_time'=>'max:191',
+            'job_type'=>'max:191',
+            'shift'=>'max:191',
+            'salary'=>'max:191',
+            'benefit'=>'',
+            'deadline'=>'max:191',
+            'note'=>'',
             'description'=>'',
-            'image'=>'required|max:191',
-            'image2'=>'max:191',
-            'image3'=>'max:191',
-            'link'=>'max:191',
+            'responsibility'=>'',
+            'requirement'=>'',
             'meta_tag'=>'',
+            'meta_description'=>'',
+            'file'=>'',
 
         ]);
 
-        $freelancer = Freelancer::create($data);
-        $this->storeImage($freelancer);
+        $career = career::create($data);
+        $this->storeImage($career);
 
-        if($freelancer){
+        if($career){
             return redirect()->back()->with('success', 'Successfully');
         }else{
             return redirect()->back()->with('wrong', 'Something went wrong!!');
         }
-        // if($freelancer){
+        // if($career){
         //     $notification = array(
         //         'messege' =>'blog added successfull',
         //         'alert-type' =>'success'
@@ -81,25 +89,25 @@ class FreelancerController extends Controller
     }
 
 
-    public function edit(Freelancer $freelancer)
+    public function edit(career $career)
     {
         $divisions = Division::latest()->get();
         $districts = District::latest()->get();
         $count = 1;
-        return view('admin.freelancer.edit_freelancer',compact('freelancer','divisions','districts','count'));
+        return view('admin.career.edit_career',compact('career','divisions','districts','count'));
     }
 
 
-    public function update(Freelancer $freelancer ,Request $request)
+    public function update(career $career ,Request $request)
     {
         if($request->has('image')){
             if($request->old_image){
                 unlink('storage/app/public/'.$request->old_image);
             }
-            $freelancer->update([
-                'image' => $request->image->store('admin/freelancer','public'),
+            $career->update([
+                'image' => $request->image->store('admin/career','public'),
             ]);
-            $resize = Image::make('storage/app/public/'.$freelancer->image)->resize(706, null, function ($constraint) {
+            $resize = Image::make('storage/app/public/'.$career->image)->resize(706, null, function ($constraint) {
                 $constraint->aspectRatio();
             });
             $resize->save();
@@ -108,10 +116,10 @@ class FreelancerController extends Controller
             if($request->old_image2){
                 unlink('storage/app/public/'.$request->old_image2);
             }
-            $freelancer->update([
-                'image2' => $request->image2->store('admin/freelancer','public'),
+            $career->update([
+                'image2' => $request->image2->store('admin/career','public'),
             ]);
-             $resize = Image::make('storage/app/public/'.$freelancer->image2)->resize(553, null, function ($constraint) {
+             $resize = Image::make('storage/app/public/'.$career->image2)->resize(553, null, function ($constraint) {
                 $constraint->aspectRatio();
             });
             $resize->save();
@@ -120,10 +128,10 @@ class FreelancerController extends Controller
             if($request->old_image3){
                 unlink('storage/app/public/'.$request->old_image3);
             }
-            $freelancer->update([
-                'image3' => $request->image3->store('admin/freelancer','public'),
+            $career->update([
+                'image3' => $request->image3->store('admin/career','public'),
             ]);
-            $resize = Image::make('storage/app/public/'.$freelancer->image3)->resize(707, null, function ($constraint) {
+            $resize = Image::make('storage/app/public/'.$career->image3)->resize(706, null, function ($constraint) {
                 $constraint->aspectRatio();
             });
             $resize->save();
@@ -145,8 +153,8 @@ class FreelancerController extends Controller
             'meta_tag'=>'',
         ]);
 
-        $freelancer->update($data);
-        if($freelancer){
+        $career->update($data);
+        if($career){
             return redirect()->back()->with('success', 'Successfully');
         }else{
             return redirect()->back()->with('wrong', 'Something went wrong!!');
@@ -154,30 +162,30 @@ class FreelancerController extends Controller
     }
 
     
-    public function delete(Freelancer $freelancer)
+    public function delete(career $career)
     {
-        if($freelancer->image){
-        unlink('storage/app/public/'.$freelancer->image);
+        if($career->image){
+        unlink('storage/app/public/'.$career->image);
         }
-        if($freelancer->image2){
-        unlink('storage/app/public/'.$freelancer->image2);
+        if($career->image2){
+        unlink('storage/app/public/'.$career->image2);
         }
-        if($freelancer->image3){
-        unlink('storage/app/public/'.$freelancer->image3);
+        if($career->image3){
+        unlink('storage/app/public/'.$career->image3);
         }
       
-        $freelancer->delete();
+        $career->delete();
         return redirect()->back()->with('success',"Delete Successfully");
      
     }
 
     
-    public function active(Freelancer $freelancer)
+    public function active(career $career)
     {
-        $freelancer->update(['status' => 1]);
-        if($freelancer){
+        $career->update(['status' => 1]);
+        if($career){
             $notification = array(
-                'messege' =>'freelancer activate successfull',
+                'messege' =>'career activate successfull',
                 'alert-type' =>'success'
             );
             return redirect()->back()->with($notification);
@@ -191,12 +199,12 @@ class FreelancerController extends Controller
     }
 
     
-    public function deactive(Freelancer $freelancer)
+    public function deactive(career $career)
     {
-        $freelancer->update(['status' => 0]);
-        if($freelancer){
+        $career->update(['status' => 0]);
+        if($career){
             $notification = array(
-                'messege' =>'freelancer deactivate successfull',
+                'messege' =>'career deactivate successfull',
                 'alert-type' =>'success'
             );
             return redirect()->back()->with($notification);
@@ -215,33 +223,33 @@ class FreelancerController extends Controller
     //     return 
     // }
 
-    private function storeImage($freelancer)
+    private function storeImage($career)
     {
         if(request()->hasFile('image')){
-            $freelancer->update([
-                'image' => request()->image->store('admin/freelancer','public'),
+            $career->update([
+                'image' => request()->image->store('admin/career','public'),
             ]);
-        $resize = Image::make('storage/app/public/'.$freelancer->image)->resize(706, null, function ($constraint) {
+        $resize = Image::make('storage/app/public/'.$career->image)->resize(706, null, function ($constraint) {
                 $constraint->aspectRatio();
             });
         $resize->save();
         }
 
         if(request()->hasFile('image2')){
-            $freelancer->update([
-                'image2' => request()->image2->store('admin/freelancer','public'),
+            $career->update([
+                'image2' => request()->image2->store('admin/career','public'),
             ]);
-        $resize = Image::make('storage/app/public/'.$freelancer->image2)->resize(553, null, function ($constraint) {
+        $resize = Image::make('storage/app/public/'.$career->image2)->resize(553, null, function ($constraint) {
                 $constraint->aspectRatio();
             });
         $resize->save();
         }
 
         if(request()->hasFile('image3')){
-            $freelancer->update([
-                'image3' => request()->image3->store('admin/freelancer','public'),
+            $career->update([
+                'image3' => request()->image3->store('admin/career','public'),
             ]);
-        $resize = Image::make('storage/app/public/'.$freelancer->image3)->resize(707, null, function ($constraint) {
+        $resize = Image::make('storage/app/public/'.$career->image3)->resize(707, null, function ($constraint) {
                 $constraint->aspectRatio();
             });
         $resize->save();
@@ -253,4 +261,6 @@ class FreelancerController extends Controller
         $district = District::where('division_id',$id)->get();
         return json_encode($district);
     }
+
+
 }

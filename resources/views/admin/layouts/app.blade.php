@@ -10,14 +10,22 @@
 <head>
     <meta charset="utf-8" />
     <title>@yield('title')</title>
+
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta content="A fully featured admin theme which can be used to build CRM, CMS, etc." name="description" />
     <meta content="Coderthemes" name="author" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 
     @yield('header_css')
-    <!-- App favicon -->
-    <link rel="shortcut icon" href="{{ url('public/backend') }}/assets/images/favicon.ico">
+      @if($setting)
+        <meta property="og:type" content="Training Institute,Training Institute sylhet" />
+        <meta property="og:url" content="{{ URL::current() }}" />
+        <meta property="og:site_name" content="DelwarIT" />
+        <link rel="shortcut icon" type="image/x-icon" href="{{ asset('storage/app/public/'.$setting->favicon)}}">
+        <meta name="og:image" content="{{ asset('/storage/app/public/'.$setting->logo) }}"/>
+        <meta name="og:title" content="{{ $setting->title }}" />
+        <meta name="og:description" content="{{ $setting->meta_description }}" />
+      @endif
 
     <!-- App css -->
     <link href="{{ url('public/backend') }}/assets/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
@@ -118,6 +126,31 @@
                             <ul class="nav-second-level" aria-expanded="false">
                                 <li><a href="{{ route('create.batch') }}">Add</a></li>
                                 <li><a href="{{ route('index.batch') }}">All</a></li>
+                            </ul>
+                        </li>
+
+
+                        <li>
+                            <a href="javascript: void(0);"><i class="fa-solid fa-users-gear"></i> <span> Job's </span> <span class="menu-arrow"></span></a>
+                            <ul class="nav-second-level" aria-expanded="false">
+                                <li><a href="{{ route('create.career') }}">Add</a></li>
+                                <li><a href="{{ route('index.career') }}">All</a></li>
+                            </ul>
+                        </li>
+
+                        <li>
+                            <a href="javascript: void(0);"><i class="fa-solid fa-users-gear"></i> <span> Freelancer's </span> <span class="menu-arrow"></span></a>
+                            <ul class="nav-second-level" aria-expanded="false">
+                                <li><a href="{{ route('create.freelancer') }}">Add</a></li>
+                                <li><a href="{{ route('index.freelancer') }}">All</a></li>
+                            </ul>
+                        </li>
+
+                        <li>
+                            <a href="javascript: void(0);"><i class="fa-solid fa-users-gear"></i> <span> Entrepreneur's </span> <span class="menu-arrow"></span></a>
+                            <ul class="nav-second-level" aria-expanded="false">
+                                <li><a href="{{ route('create.entrepreneur') }}">Add</a></li>
+                                <li><a href="{{ route('index.entrepreneur') }}">All</a></li>
                             </ul>
                         </li>
 

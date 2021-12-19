@@ -4,13 +4,14 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\User\Freelancer;
+use App\Models\User\Entrepreneur;
 use App\Models\Admin\Division;
 use App\Models\Admin\District;
 use Image;
 use Str;
 
-class FreelancerController extends Controller
+
+class EntrepreneurController extends Controller
 {
     public function __construct()
     {
@@ -19,17 +20,17 @@ class FreelancerController extends Controller
 
     public function index()
     {
-        $freelancers = Freelancer::latest()->get();
+        $entrepreneurs = entrepreneur::latest()->get();
         $count = 1;
-        return view('admin.freelancer.index_freelancer',compact('freelancers','count'));
+        return view('admin.entrepreneur.index_entrepreneur',compact('entrepreneurs','count'));
     }
     public function create()
     {
-        $freelancers = Freelancer::latest()->get();
+        $entrepreneurs = entrepreneur::latest()->get();
         $divisions = Division::latest()->get();
         $districts = District::latest()->get();
         $count = 1;
-        return view('admin.freelancer.create_freelancer',compact('freelancers','divisions','districts','count'));
+        return view('admin.entrepreneur.create_entrepreneur',compact('entrepreneurs','divisions','districts','count'));
     }
 
 
@@ -40,8 +41,8 @@ class FreelancerController extends Controller
             'division_id'=>'required|max:191',
             'district_id'=>'required|max:191',
             'name'=>'required|max:191',
-            'slug'=>'required|max:191|unique:freelancers',
-            'email'=>'required|max:191|unique:freelancers',
+            'slug'=>'required|max:191|unique:entrepreneurs',
+            'email'=>'required|max:191|unique:entrepreneurs',
             'phone'=>'required|max:15',
             'profession'=>'required|max:191',
             'expart_in'=>'',
@@ -56,15 +57,15 @@ class FreelancerController extends Controller
 
         ]);
 
-        $freelancer = Freelancer::create($data);
-        $this->storeImage($freelancer);
+        $entrepreneur = entrepreneur::create($data);
+        $this->storeImage($entrepreneur);
 
-        if($freelancer){
+        if($entrepreneur){
             return redirect()->back()->with('success', 'Successfully');
         }else{
             return redirect()->back()->with('wrong', 'Something went wrong!!');
         }
-        // if($freelancer){
+        // if($entrepreneur){
         //     $notification = array(
         //         'messege' =>'blog added successfull',
         //         'alert-type' =>'success'
@@ -81,25 +82,25 @@ class FreelancerController extends Controller
     }
 
 
-    public function edit(Freelancer $freelancer)
+    public function edit(entrepreneur $entrepreneur)
     {
         $divisions = Division::latest()->get();
         $districts = District::latest()->get();
         $count = 1;
-        return view('admin.freelancer.edit_freelancer',compact('freelancer','divisions','districts','count'));
+        return view('admin.entrepreneur.edit_entrepreneur',compact('entrepreneur','divisions','districts','count'));
     }
 
 
-    public function update(Freelancer $freelancer ,Request $request)
+    public function update(entrepreneur $entrepreneur ,Request $request)
     {
         if($request->has('image')){
             if($request->old_image){
                 unlink('storage/app/public/'.$request->old_image);
             }
-            $freelancer->update([
-                'image' => $request->image->store('admin/freelancer','public'),
+            $entrepreneur->update([
+                'image' => $request->image->store('admin/entrepreneur','public'),
             ]);
-            $resize = Image::make('storage/app/public/'.$freelancer->image)->resize(706, null, function ($constraint) {
+            $resize = Image::make('storage/app/public/'.$entrepreneur->image)->resize(706, null, function ($constraint) {
                 $constraint->aspectRatio();
             });
             $resize->save();
@@ -108,10 +109,10 @@ class FreelancerController extends Controller
             if($request->old_image2){
                 unlink('storage/app/public/'.$request->old_image2);
             }
-            $freelancer->update([
-                'image2' => $request->image2->store('admin/freelancer','public'),
+            $entrepreneur->update([
+                'image2' => $request->image2->store('admin/entrepreneur','public'),
             ]);
-             $resize = Image::make('storage/app/public/'.$freelancer->image2)->resize(553, null, function ($constraint) {
+             $resize = Image::make('storage/app/public/'.$entrepreneur->image2)->resize(553, null, function ($constraint) {
                 $constraint->aspectRatio();
             });
             $resize->save();
@@ -120,10 +121,10 @@ class FreelancerController extends Controller
             if($request->old_image3){
                 unlink('storage/app/public/'.$request->old_image3);
             }
-            $freelancer->update([
-                'image3' => $request->image3->store('admin/freelancer','public'),
+            $entrepreneur->update([
+                'image3' => $request->image3->store('admin/entrepreneur','public'),
             ]);
-            $resize = Image::make('storage/app/public/'.$freelancer->image3)->resize(707, null, function ($constraint) {
+            $resize = Image::make('storage/app/public/'.$entrepreneur->image3)->resize(706, null, function ($constraint) {
                 $constraint->aspectRatio();
             });
             $resize->save();
@@ -145,8 +146,8 @@ class FreelancerController extends Controller
             'meta_tag'=>'',
         ]);
 
-        $freelancer->update($data);
-        if($freelancer){
+        $entrepreneur->update($data);
+        if($entrepreneur){
             return redirect()->back()->with('success', 'Successfully');
         }else{
             return redirect()->back()->with('wrong', 'Something went wrong!!');
@@ -154,30 +155,30 @@ class FreelancerController extends Controller
     }
 
     
-    public function delete(Freelancer $freelancer)
+    public function delete(entrepreneur $entrepreneur)
     {
-        if($freelancer->image){
-        unlink('storage/app/public/'.$freelancer->image);
+        if($entrepreneur->image){
+        unlink('storage/app/public/'.$entrepreneur->image);
         }
-        if($freelancer->image2){
-        unlink('storage/app/public/'.$freelancer->image2);
+        if($entrepreneur->image2){
+        unlink('storage/app/public/'.$entrepreneur->image2);
         }
-        if($freelancer->image3){
-        unlink('storage/app/public/'.$freelancer->image3);
+        if($entrepreneur->image3){
+        unlink('storage/app/public/'.$entrepreneur->image3);
         }
       
-        $freelancer->delete();
+        $entrepreneur->delete();
         return redirect()->back()->with('success',"Delete Successfully");
      
     }
 
     
-    public function active(Freelancer $freelancer)
+    public function active(entrepreneur $entrepreneur)
     {
-        $freelancer->update(['status' => 1]);
-        if($freelancer){
+        $entrepreneur->update(['status' => 1]);
+        if($entrepreneur){
             $notification = array(
-                'messege' =>'freelancer activate successfull',
+                'messege' =>'entrepreneur activate successfull',
                 'alert-type' =>'success'
             );
             return redirect()->back()->with($notification);
@@ -191,12 +192,12 @@ class FreelancerController extends Controller
     }
 
     
-    public function deactive(Freelancer $freelancer)
+    public function deactive(entrepreneur $entrepreneur)
     {
-        $freelancer->update(['status' => 0]);
-        if($freelancer){
+        $entrepreneur->update(['status' => 0]);
+        if($entrepreneur){
             $notification = array(
-                'messege' =>'freelancer deactivate successfull',
+                'messege' =>'entrepreneur deactivate successfull',
                 'alert-type' =>'success'
             );
             return redirect()->back()->with($notification);
@@ -215,33 +216,33 @@ class FreelancerController extends Controller
     //     return 
     // }
 
-    private function storeImage($freelancer)
+    private function storeImage($entrepreneur)
     {
         if(request()->hasFile('image')){
-            $freelancer->update([
-                'image' => request()->image->store('admin/freelancer','public'),
+            $entrepreneur->update([
+                'image' => request()->image->store('admin/entrepreneur','public'),
             ]);
-        $resize = Image::make('storage/app/public/'.$freelancer->image)->resize(706, null, function ($constraint) {
+        $resize = Image::make('storage/app/public/'.$entrepreneur->image)->resize(706, null, function ($constraint) {
                 $constraint->aspectRatio();
             });
         $resize->save();
         }
 
         if(request()->hasFile('image2')){
-            $freelancer->update([
-                'image2' => request()->image2->store('admin/freelancer','public'),
+            $entrepreneur->update([
+                'image2' => request()->image2->store('admin/entrepreneur','public'),
             ]);
-        $resize = Image::make('storage/app/public/'.$freelancer->image2)->resize(553, null, function ($constraint) {
+        $resize = Image::make('storage/app/public/'.$entrepreneur->image2)->resize(553, null, function ($constraint) {
                 $constraint->aspectRatio();
             });
         $resize->save();
         }
 
         if(request()->hasFile('image3')){
-            $freelancer->update([
-                'image3' => request()->image3->store('admin/freelancer','public'),
+            $entrepreneur->update([
+                'image3' => request()->image3->store('admin/entrepreneur','public'),
             ]);
-        $resize = Image::make('storage/app/public/'.$freelancer->image3)->resize(707, null, function ($constraint) {
+        $resize = Image::make('storage/app/public/'.$entrepreneur->image3)->resize(707, null, function ($constraint) {
                 $constraint->aspectRatio();
             });
         $resize->save();

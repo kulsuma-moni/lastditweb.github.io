@@ -40,12 +40,12 @@
                 <div class="card-box">
 
                     <br><br>
-                    <form method="post" action="{{ route('store.freelancer') }}" enctype="multipart/form-data">
+                    <form method="post" action="{{ route('update.freelancer',$freelancer->id) }}" enctype="multipart/form-data">
                         @csrf
                         <div class="form-group row">
                             <label for="name" class="col-3 col-form-label">Name *</label>
                             <div class="col-9">
-                                <input type="text" id="name" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}">
+                                <input type="text" id="name" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ $freelancer->name }}">
                                 @error('name')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
@@ -56,7 +56,7 @@
                         <div class="form-group row">
                             <label for="slug" class="col-3 col-form-label">Slug *</label>
                             <div class="col-9">
-                                <input type="text" id="slug" class="form-control @error('slug') is-invalid @enderror" name="slug"  value="{{ old('slug') }}">
+                                <input type="text" id="slug" class="form-control @error('slug') is-invalid @enderror" name="slug"  value="{{ $freelancer->slug }}">
                                 @error('slug')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
@@ -67,7 +67,7 @@
                         <div class="form-group row">
                             <label for="email" class="col-3 col-form-label">Email *</label>
                             <div class="col-9">
-                                <input type="text" id="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}">
+                                <input type="text" id="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ $freelancer->email }}">
                                 @error('email')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
@@ -78,7 +78,7 @@
                         <div class="form-group row">
                             <label for="phone" class="col-3 col-form-label">Phone *</label>
                             <div class="col-9">
-                                <input type="text" id="phone" class="form-control @error('phone') is-invalid @enderror" name="phone" value="{{ old('phone') }}">
+                                <input type="text" id="phone" class="form-control @error('phone') is-invalid @enderror" name="phone" value="{{ $freelancer->phone }}">
                                 @error('phone')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
@@ -89,7 +89,7 @@
                         <div class="form-group row">
                             <label for="profession" class="col-3 col-form-label">Profession *</label>
                             <div class="col-9">
-                                <input type="text" id="profession" class="form-control @error('profession') is-invalid @enderror" name="profession" value="{{ old('profession') }}">
+                                <input type="text" id="profession" class="form-control @error('profession') is-invalid @enderror" name="profession" value="{{ $freelancer->profession }}">
                                 @error('profession')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
@@ -132,6 +132,7 @@
                             <label for="image" class="col-3 col-form-label">Profile Image</label>
                             <div class="col-9">
                                 <input type="file" id="image" class="form-control @error('image') is-invalid @enderror" name="image"  value="{{ old('image') }}">
+                                <input type="hidden" name="old_image" value="{{ $freelancer->image }}">
                                 @error('image')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
@@ -142,7 +143,7 @@
                         <div class="form-group row">
                             <label for="career_obj" class="col-3 col-form-label">Career Objectives</label>
                             <div class="col-9">
-                                <textarea name="career_obj" class="form-control @error('career_obj') is-invalid @enderror" cols="30" rows="10">{{ old('career_obj') }}</textarea>
+                                <textarea name="career_obj" class="form-control @error('career_obj') is-invalid @enderror" cols="30" rows="10">{{ $freelancer->career_obj }}</textarea>
                                 @error('career_obj')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
@@ -153,7 +154,7 @@
                         <div class="form-group row">
                             <label for="expert_in" class="col-3 col-form-label">Expert In</label>
                             <div class="col-9">
-                                <textarea name="expert_in" id="editor12" class="form-control @error('expert_in') is-invalid @enderror" cols="30" rows="10">{{ old('expert_in') }}</textarea>
+                                <textarea name="expert_in" id="editor12" class="form-control @error('expert_in') is-invalid @enderror" cols="30" rows="10">{{ $freelancer->expert_in }}</textarea>
                                 @error('expert_in')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
@@ -164,7 +165,8 @@
                         <div class="form-group row">
                             <label for="image2" class="col-3 col-form-label">Experience Image</label>
                             <div class="col-9">
-                                <input type="file" id="image2" class="form-control @error('image2') is-invalid @enderror" name="image2"  value="{{ old('image2') }}">
+                                <input type="file" id="image2" class="form-control @error('image2') is-invalid @enderror" name="image2">
+                                <input type="hidden" name="old_image2" value="{{ $freelancer->image2 }}">
                                 @error('image2')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
@@ -175,7 +177,7 @@
                         <div class="form-group row">
                             <label for="description" class="col-3 col-form-label">Description </label>
                             <div class="col-9">
-                                <textarea name="description" id="editor" class="form-control @error('description') is-invalid @enderror" cols="30" rows="10">{{ old('description') }}</textarea>
+                                <textarea name="description" id="editor" class="form-control @error('description') is-invalid @enderror" cols="30" rows="10">{{ $freelancer->description }}</textarea>
                                 @error('description')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
@@ -187,7 +189,8 @@
                         <div class="form-group row">
                             <label for="image3" class="col-3 col-form-label">Description Image</label>
                             <div class="col-9">
-                                <input type="file" id="image3" class="form-control @error('image3') is-invalid @enderror" name="image3"  value="{{ old('image3') }}">
+                                <input type="file" id="image3" class="form-control @error('image3') is-invalid @enderror" name="image3" value="{{ old('image3') }}">
+                                <input type="hidden" name="old_image3" value="{{ $freelancer->old_image3 }}">
                                 @error('image3')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
@@ -199,12 +202,12 @@
                             <label for="experience_year" class="col-3 col-form-label">Experience Year</label>
                             <div class="col-9">
                                 <select id="experience_year" class="form-control @error('experience_year') is-invalid @enderror" name="experience_year"  value="{{ old('experience_year') }}">
-                                    <option value="1">1 year</option>
-                                    <option value="2">2 years</option>
-                                    <option value="3">3 years</option>
-                                    <option value="4">4 years</option>
-                                    <option value="5-10">5-10 years</option>
-                                    <option value="10-15">10-15 years</option>
+                                    <option value="1" @if($freelancer->experience_year == '1') selected="" @endif>1 year</option>
+                                    <option value="2" @if($freelancer->experience_year == '2') selected="" @endif>2 years</option>
+                                    <option value="3" @if($freelancer->experience_year == '3') selected="" @endif>3 years</option>
+                                    <option value="4" @if($freelancer->experience_year == '4') selected="" @endif>4 years</option>
+                                    <option value="5-10" @if($freelancer->experience_year == '5-10') selected="" @endif>5-10 years</option>
+                                    <option value="10-15" @if($freelancer->experience_year == '10-15') selected="" @endif>10-15 years</option>
                                     <option value="15+">10-15 years</option>
 
                                 </select>
@@ -218,7 +221,7 @@
                         <div class="form-group row">
                             <label for="link" class="col-3 col-form-label">Resume Link*</label>
                             <div class="col-9">
-                                <input type="number" id="link" class="form-control @error('link') is-invalid @enderror" name="link"  value="{{ old('link') }}">
+                                <input type="number" id="link" class="form-control @error('link') is-invalid @enderror" name="link"  value="{{ $freelancer->link }}">
                                 @error('link')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
@@ -232,7 +235,7 @@
                         <div class="form-group row">
                             <label for="meta_tag" class="col-3 col-form-label">Meta Tag *</label>
                             <div class="col-9">
-                                <textarea name="meta_tag" class="form-control @error('meta_tag') is-invalid @enderror" cols="30" rows="10">{{ old('meta_tag') }}</textarea>
+                                <textarea name="meta_tag" class="form-control @error('meta_tag') is-invalid @enderror" cols="30" rows="10">{{ $freelancer->meta_tag }}</textarea>
                                 @error('meta_tag')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>

@@ -79,13 +79,17 @@ $setting = App\Models\Admin\Setting::first();
                         </li>
                         <li class="nav-item   custom-nav-item home-nav">
                             <a class="nav-link custom-nav-link hvr-underline-from-left" href="{{ route('services') }}">Services</a>
+<<<<<<< HEAD
+                        </li>
+                        <li class="nav-item  custom-nav-item home-nav">
+                            <a class="nav-link custom-nav-link hvr-underline-from-left" href="{{ route('blogs') }}">Blog</a>
+=======
+>>>>>>> 8959a2407a8d7790f0ced5686f82baa21936dfee
                         </li>
                         <li class="nav-item  custom-nav-item home-nav">
                             <a class="nav-link custom-nav-link hvr-underline-from-left" href="{{ route('blogs') }}">Blog</a>
                         </li>
-                        <li class="nav-item  custom-nav-item home-nav">
-                            <a class="nav-link custom-nav-link hvr-underline-from-left" href="#">Career</a>
-                        </li>
+<<<<<<< HEAD
                         <!-- <li class="nav-item dropdown custom-nav-item home-nav">
                             <a class="nav-link custom-nav-link  hvr-underline-from-left home-nav-caret" href="#0">About</a>
                             <div class="dropdown-menu">
@@ -98,6 +102,12 @@ $setting = App\Models\Admin\Setting::first();
                         <!-- <li class="nav-item  custom-nav-item home-nav">
                             <a class="nav-link custom-nav-link hvr-underline-from-left" href="{{ route('login') }}">Account</a>
                         </li> -->
+=======
+
+                        <li class="nav-item  custom-nav-item home-nav">
+                            <a class="nav-link custom-nav-link hvr-underline-from-left" href="{{ route('careers') }}">Career</a>
+                        </li>
+>>>>>>> 8959a2407a8d7790f0ced5686f82baa21936dfee
                     </ul>
                     <a class=" custom-nav-link menu-btn" href="{{ route('start.project') }}">Start A Project</a>
                 </div>
@@ -136,9 +146,22 @@ $setting = App\Models\Admin\Setting::first();
                         <ul class="footer-links-list">
                             <li><a href="{{ route('/') }}">Home</a></li>
                             <li><a href="{{ route('about') }}">About</a></li>
-                            <li><a href="#">Freelancer</a></li>
-                            <li><a href="#">Enterpreneur</a></li>
-                            <li><a href="{{ route('contact') }}">Contact</a></li></ul>
+                            <li><a href="{{ route('freelancers') }}">Freelancer</a></li>
+                            <li><a href="{{ route('entrepreneurs') }}">Enterpreneur</a></li>
+                            <li><a href="{{ route('contact') }}">Contact</a></li>
+
+                            @guest
+                            <li><a href="{{ route('login') }}">Account</a></li>
+                            </ul>
+                            
+                            @else
+                            @if(Auth::user()->is_editor == 1 || Auth::user()->is_admin == 1)
+                            <li><a href="{{ route('dashboard') }}">Dasboard</a></li>
+                            </ul>
+                            @endif
+                            
+                            @endguest
+                        </ul>
                     </div>
                 </div>
                 <div class="col-lg-2 col-md-6 col-sm-6">
@@ -205,13 +228,13 @@ $setting = App\Models\Admin\Setting::first();
 
     $("#testimonial-slider").owlCarousel({
         items:2,
-    margin:40,
-    loop:true,
+        margin:40,
+        loop:true,
         pagination:true,
         navigation:false,
         autoplay:true,
-    autoplayTimeout:6000,
-    autoplayHoverPause:true,
+        autoplayTimeout:6000,
+        autoplayHoverPause:true,
         responsive:{
             0:{
                 items:1,
@@ -224,10 +247,35 @@ $setting = App\Models\Admin\Setting::first();
             }
         }
     });
-
     });
 
     </script>
-
+    <script>
+      $(document).ready(function(){
+        $("#top_author_slider").owlCarousel({
+        items:4,
+        loop:true,
+        margin:20,
+        responsiveClass:true,
+        dots:false,
+        nav:true,
+        navText: ["<i class='fa fa-angle-left'></i>", "<i class='fa fa-angle-right'></i>"],
+        autoplay:true,
+        autoplayTimeout:3000,
+        autoplayHoverPause:true,
+        responsive:{
+            0:{
+                items:2,
+            },
+            800:{
+                items:3,
+            },
+            1040:{
+                items:4,
+            }
+        }
+        });
+    });
+    </script>
     
 </body>

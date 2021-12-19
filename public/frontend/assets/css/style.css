@@ -3541,7 +3541,7 @@ Blog Page Area CSS
 }
 
 .top_author_area .top_author {
-  background: #f9f9f9;
+  margin: 30px 0;
   border-radius: 25px;
   -webkit-border-radius: 25px;
   -moz-border-radius: 25px;
@@ -3572,6 +3572,36 @@ Blog Page Area CSS
   transform: translateY(-7px);
   -webkit-transform: translateY(-7px);
   -moz-transform: translateY(-7px);
+}
+
+.top_author_area .owl-carousel .owl-dots.disabled, .top_author_area .owl-carousel .owl-nav.disabled {
+  display: block;
+}
+
+.top_author_area .owl-carousel .owl-nav button.owl-prev {
+  position: absolute;
+  top: 40%;
+  left: 0;
+}
+
+.top_author_area .owl-carousel .owl-nav button.owl-next {
+  position: absolute;
+  top: 40%;
+  right: 0;
+}
+
+.top_author_area .owl-carousel .owl-nav button {
+  background: #cacaca;
+  height: 30px;
+  width: 30px;
+  border-radius: 50%;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+}
+
+.top_author_area .owl-carousel .owl-nav button i {
+  font-size: 20px;
+  color: #023e8a;
 }
 
 .subscribe_area {

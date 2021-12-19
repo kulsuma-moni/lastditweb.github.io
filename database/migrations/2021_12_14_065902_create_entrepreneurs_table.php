@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateFreelancersTable extends Migration
+class CreateEntrepreneursTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateFreelancersTable extends Migration
      */
     public function up()
     {
-        Schema::create('freelancers', function (Blueprint $table) {
+        Schema::create('entrepreneurs', function (Blueprint $table) {
             $table->id();
             $table->bigInteger('division_id')->unsigned();
             $table->foreign('division_id')->references('id')->on('divisions')->onDelete('cascade');
@@ -35,7 +35,7 @@ class CreateFreelancersTable extends Migration
             $table->text('link')->nullable();
             $table->text('meta_tag')->nullable();
             $table->integer('status')->default(1);
-
+            
             $table->timestamps();
         });
     }
@@ -47,6 +47,6 @@ class CreateFreelancersTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('freelancers');
+        Schema::dropIfExists('entrepreneurs');
     }
 }
