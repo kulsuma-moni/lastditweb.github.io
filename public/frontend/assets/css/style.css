@@ -5233,7 +5233,7 @@ exam area CSS
   background: #0077b6c4;
   position: relative;
   border-radius: 30px;
-  top: 0;
+  left: 50%;
   top: 0;
 }
 
@@ -5254,6 +5254,14 @@ exam area CSS
   line-height: 1.5;
   padding: 25px 0 0;
   margin: 0;
+  text-align: justify;
+}
+
+.experience-wrapper-area .image {
+  width: 550px;
+  float: left;
+  margin-bottom: 40px;
+  margin-right: 10px;
 }
 
 .experience-wrapper-area .about-content {

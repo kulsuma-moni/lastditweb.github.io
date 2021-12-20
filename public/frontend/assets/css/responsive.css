@@ -886,6 +886,12 @@
     padding: 15px 10px;
     right: 0;
   }
+  .experience-wrapper-area .image {
+    width: 100%;
+  }
+  .experience-wrapper-area .em-bar-big {
+    left: 0%;
+  }
 }
 
 @media (min-width: 576px) and (max-width: 767px) {
@@ -975,6 +981,12 @@
     padding: 15px 10px;
     right: 0;
   }
+  .experience-wrapper-area .image {
+    width: 100%;
+  }
+  .experience-wrapper-area .em-bar-big {
+    left: 0%;
+  }
 }
 
 @media (min-width: 768px) and (max-width: 991px) {
@@ -1026,6 +1038,12 @@
   .subscribe_area .subscribe_box .sub_btn {
     padding: 15px 10px;
     right: 0;
+  }
+  .experience-wrapper-area .image {
+    width: 50%;
+  }
+  .experience-wrapper-area .em-bar-big {
+    left: 0%;
   }
 }
 

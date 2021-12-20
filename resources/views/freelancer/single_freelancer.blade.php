@@ -34,24 +34,26 @@
     <section class="experience-wrapper-area">
         <div class="experience-wrap">
             <div class="container">
-                <div class="row align-items-center">
-                    <div class="col-lg-6">
+                <div class="row">
+                    <!-- <div class="col-lg-6">
                         <div class="image">
-                            <img src="{{ asset('storage/app/public/'.$freelancer->image2) }}" alt="" class="img-fluid">
+                            <img src="{{asset('public/frontend/assets/images/1.png')}}" alt="" class="img-fluid">
                         </div>
-                    </div>
-                    <div class="col-lg-6">
-                        <div class="inner-content">
-                            <div class="title">
-                                <h2>Freelancer Experience</h2>
-                                <div class="em-bar-main">
-                                    <div class="em-bar em-bar-big"></div>
-                                 </div>
-                            </div>
-                        </div>
-                       
+                    </div> -->
+                    <div class="col-lg-12">
                         <div class="row">
                             <div class="col-lg-12">
+                                <div class="image">
+                                    <img src="{{asset('public/frontend/assets/images/1.png')}}" alt="" class="img-fluid">
+                                </div>
+                                <div class="inner-content">
+                                    <div class="title">
+                                        <h2>Freelancer Experience</h2>
+                                        <div class="em-bar-main">
+                                            <div class="em-bar em-bar-big"></div>
+                                        </div>
+                                    </div>
+                                </div>
                                 <p>{!! $freelancer->expert_in !!}</p>
                             </div>
                         </div>
@@ -77,7 +79,7 @@
                 <div class="row align-items-center">
                     <div class="col-lg-6">
                         <div class="image">
-                            <img src="{{ asset('storage/app/public/'.$freelancer->image3) }}" alt="" class="img-fluid">
+                        <img src="{{asset('public/frontend/assets/images/1.png')}}" alt="" class="img-fluid">
                         </div>
                     </div>
                     <div class="col-lg-6">
