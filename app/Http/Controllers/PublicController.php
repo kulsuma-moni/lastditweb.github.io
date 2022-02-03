@@ -13,11 +13,16 @@ use App\Models\Admin\Course;
 use App\Models\Admin\Portfoliocate;
 use App\Models\Admin\Portfolio;
 use App\Models\Admin\Service;
+use App\Models\Admin\Careerapply;
 use App\Models\User\Freelancer;
 use App\Models\User\Entrepreneur;
 use App\Models\Admin\Career;
 use App\Models\Contact;
+use App\Models\User;
 use Carbon\CarbonPeriod;
+use Image;
+use Str;
+
 
 
 class PublicController extends Controller
@@ -77,6 +82,51 @@ class PublicController extends Controller
         return view('career.single_career',compact('career'));
     }
 
+    public function careerApply(Career $career)
+    {
+        return view('career.apply_job',compact('career'));
+    }
+    public function careerApplication()
+    {
+
+        $data = request()->validate([
+
+            'career_id' =>'required|max:11',
+            'user_id' =>'required|max:11',
+            'name'=>'required|max:191',
+            'email'=>'required|max:191',
+            'expect_salary'=>'max:191',
+            'phone'=>'max:191',
+            'image'=>'dimensions:min_width=295,max_width=305,min_height=295,max_height=305',
+            'file'=>'',
+
+        ]);
+
+
+
+        $career = careerapply::create($data);
+
+        if(request()->hasFile('image')){
+            $career->update([
+                'image' => request()->image->store('admin/career','public'),
+            ]);
+        $resize = Image::make('storage/app/public/'.$career->image)->resize(300,300);
+        $resize->save();
+        }
+
+        if(request()->hasFile('file')){
+            $career->update([
+                'file' => request()->file->store('admin/career','public'),
+            ]);
+        }
+
+        if($career){
+            return redirect()->back()->with('success', 'Successfull');
+        }else{
+            return redirect()->back()->with('wrong', 'Something went wrong!!');
+        }
+    }
+
     public function entrepreneurs()
     {
         $entrepreneurs = entrepreneur::latest()->get();
@@ -112,23 +162,60 @@ class PublicController extends Controller
 
     public function blogs()
     {
-        $blogs = Blog::where('status',1)->get();
-        $pupularblogs = Blog::where('status',1)->inRandomOrder()->limit(3)->get();
+        $blogs = Blog::where('status',1)->latest()->paginate(8);
+        $trends = Blog::where('trend',1)->where('status',1)->latest()->limit(3)->get();
+        $importents = Blog::where('importent',1)->where('status',1)->latest()->limit(2)->get();
+        $tabblogs = Blog::where('status',1)->latest()->limit(16)->get();
+        $pupularblogs = Blog::where('status',1)->latest()->limit(3)->get();
         $blogcates = Blogcate::latest()->get();
+        $lastblog = Blog::where('status',1)->latest()->first();
+        $users = User::where('is_editor',1)->orWhere('is_admin',1)->get();
+        // $authors = $users->blog();
         $result = CarbonPeriod::create('2012-01', '1 month', date('Y-m'));
-        return view('blog.blogs',compact('blogs','pupularblogs','blogcates','result'));
+        return view('blog.blogs',compact('blogs','trends','importents','tabblogs','lastblog','pupularblogs','blogcates','result','users'));
+    }
+    public function latestBlogs()
+    {
+        $blogs = Blog::where('status',1)->paginate(28);
+        return view('blog.latest_blogs',compact('blogs'));
+    }   
+
+    public function archieveMonth($archieve)
+    {
+        $blogs = Blog::where('month',$archieve)->paginate(28);
+        return view('blog.achieve_blogs',compact('blogs','archieve'));
+    }
+
+    public function categoryBlogs($blogcate)
+    {
+        $blogcate = Blogcate::where('slug',$blogcate)->first();
+        $blogs = $blogcate->blog()->paginate(28);
+        return view('blog.category_blogs',compact('blogs','blogcate'));
     }
 
     public function singleBlog($slug)
     {
         $blog = Blog::where('slug',$slug)->first();
-        return view('blog.single_blog',compact('blog'));
+        $blog->update([
+           'views' => $blog->views + 1,
+       ]);
+
+        $blogcomments = $blog->blogcomment;
+
+        $relatedproduct = Blog::where('status',1)->inRandomOrder()->latest()->limit(2)->get();
+        return view('blog.single_blog',compact('blog','relatedproduct','blogcomments'));
+    }
+
+    public function team()
+    {
+        return view('team');
     }
 
     public function about()
     {
         return view('about');
     }
+
     public function ceo()
     {
         return view('ceo');
@@ -191,40 +278,36 @@ class PublicController extends Controller
     }
 
 
-    public function singleProduct($slug)
-    {
-        $product = Product::where('slug',$slug)->first();
-        return view('single_product',compact('product'));
-    }
+    // public function singleProduct($slug)
+    // {
+    //     $product = Product::where('slug',$slug)->first();
+    //     return view('single_product',compact('product'));
+    // }
 
-    public function brandProduct($slug)
-    {
-        $brand = Brand::where('slug',$slug)->first();
-        $products = $brand->product;
-        return view('brand_product',compact('brand','products'));
-    }
+    // public function brandProduct($slug)
+    // {
+    //     $brand = Brand::where('slug',$slug)->first();
+    //     $products = $brand->product;
+    //     return view('brand_product',compact('brand','products'));
+    // }
 
-    public function categoryProduct($slug)
-    {
-        $category = Category::where('slug',$slug)->first();
-        $products = $category->product;
-        return view('category_product',compact('category','products'));
-    }
+    // public function categoryProduct($slug)
+    // {
+    //     $category = Category::where('slug',$slug)->first();
+    //     $products = $category->product;
+    //     return view('category_product',compact('category','products'));
+    // }
 
 
     public function search(Request $request)
     {
         $search = $request->input('search');
-        $products = Product::where('name','LIKE', "%$search%")->orwhere('description','LIKE', "%$search%")->latest()->get();
-        $categories = array();
-        $brands = array();
-            if (count($products) == 0) {
-                $categories = Blogcate::where('name','LIKE',"%$search%")->latest()->paginate(12);
-                if (count($categories) == 0) {
-                    $brands = Tag::where('name','LIKE',"%$search%")->latest()->paginate(12);
-                }
+        $blogs = Blog::where('title','LIKE', "%$search%")->orwhere('description','LIKE', "%$search%")->latest()->paginate(30);
+        $blogcates = array();
+            if (count($blogs) == 0) {
+                $blogcates = Blogcate::where('name','LIKE',"%$search%")->latest()->paginate(12);
             }
-        return view('search',compact('products','search','categories','brands'));
+        return view('blog.search_blogs',compact('blogs','search','blogcates'));
     }
 
 }

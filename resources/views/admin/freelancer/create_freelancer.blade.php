@@ -218,7 +218,7 @@
                         <div class="form-group row">
                             <label for="link" class="col-3 col-form-label">Resume Link*</label>
                             <div class="col-9">
-                                <input type="number" id="link" class="form-control @error('link') is-invalid @enderror" name="link"  value="{{ old('link') }}">
+                                <input type="text" id="link" class="form-control @error('link') is-invalid @enderror" name="link"  value="{{ old('link') }}">
                                 @error('link')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>

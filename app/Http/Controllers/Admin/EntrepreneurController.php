@@ -49,9 +49,9 @@ class EntrepreneurController extends Controller
             'career_obj'=>'',
             'experience_year'=>'max:191',
             'description'=>'',
-            'image'=>'required|max:191',
-            'image2'=>'max:191',
-            'image3'=>'max:191',
+            'image'=>'required',
+            'image2'=>'',
+            'image3'=>'',
             'link'=>'max:191',
             'meta_tag'=>'',
 
@@ -112,7 +112,7 @@ class EntrepreneurController extends Controller
             $entrepreneur->update([
                 'image2' => $request->image2->store('admin/entrepreneur','public'),
             ]);
-             $resize = Image::make('storage/app/public/'.$entrepreneur->image2)->resize(553, null, function ($constraint) {
+             $resize = Image::make('storage/app/public/'.$entrepreneur->image2)->resize(453, null, function ($constraint) {
                 $constraint->aspectRatio();
             });
             $resize->save();
@@ -124,7 +124,7 @@ class EntrepreneurController extends Controller
             $entrepreneur->update([
                 'image3' => $request->image3->store('admin/entrepreneur','public'),
             ]);
-            $resize = Image::make('storage/app/public/'.$entrepreneur->image3)->resize(706, null, function ($constraint) {
+            $resize = Image::make('storage/app/public/'.$entrepreneur->image3)->resize(506, null, function ($constraint) {
                 $constraint->aspectRatio();
             });
             $resize->save();
@@ -232,7 +232,7 @@ class EntrepreneurController extends Controller
             $entrepreneur->update([
                 'image2' => request()->image2->store('admin/entrepreneur','public'),
             ]);
-        $resize = Image::make('storage/app/public/'.$entrepreneur->image2)->resize(553, null, function ($constraint) {
+        $resize = Image::make('storage/app/public/'.$entrepreneur->image2)->resize(453, null, function ($constraint) {
                 $constraint->aspectRatio();
             });
         $resize->save();
@@ -242,7 +242,7 @@ class EntrepreneurController extends Controller
             $entrepreneur->update([
                 'image3' => request()->image3->store('admin/entrepreneur','public'),
             ]);
-        $resize = Image::make('storage/app/public/'.$entrepreneur->image3)->resize(707, null, function ($constraint) {
+        $resize = Image::make('storage/app/public/'.$entrepreneur->image3)->resize(607, null, function ($constraint) {
                 $constraint->aspectRatio();
             });
         $resize->save();

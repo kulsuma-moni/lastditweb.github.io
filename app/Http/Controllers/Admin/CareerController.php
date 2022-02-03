@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use App\Models\Admin\Career;
 use App\Models\Admin\Division;
 use App\Models\Admin\District;
+use App\Models\Admin\Careerapply;
+use App\Models\User;
 use Image;
 use Str;
 use Auth;
@@ -27,6 +29,13 @@ class CareerController extends Controller
         $count = 1;
         return view('admin.career.index_career',compact('careers','count'));
     }
+
+    public function view(Career $career)
+    {
+        return view('admin.career.view_career',compact('career'));
+    }
+
+
     public function create()
     {
         $careers = career::latest()->get();
@@ -41,7 +50,6 @@ class CareerController extends Controller
     {
         $data = $request->validate([
 
-            
             'division_id'=>'required|max:11|integer',
             'district_id'=>'required|max:11|integer',
             'title'=>'required|max:191',
@@ -98,59 +106,44 @@ class CareerController extends Controller
     }
 
 
-    public function update(career $career ,Request $request)
+    public function update(Career $career ,Request $request)
     {
-        if($request->has('image')){
-            if($request->old_image){
-                unlink('storage/app/public/'.$request->old_image);
+        if($request->has('file')){
+            if($request->old_file){
+                unlink('storage/app/public/'.$request->old_file);
             }
             $career->update([
-                'image' => $request->image->store('admin/career','public'),
+                'file' => $request->file->store('admin/career','public'),
             ]);
-            $resize = Image::make('storage/app/public/'.$career->image)->resize(706, null, function ($constraint) {
-                $constraint->aspectRatio();
-            });
-            $resize->save();
-        }
-        if($request->has('image2')){
-            if($request->old_image2){
-                unlink('storage/app/public/'.$request->old_image2);
-            }
-            $career->update([
-                'image2' => $request->image2->store('admin/career','public'),
-            ]);
-             $resize = Image::make('storage/app/public/'.$career->image2)->resize(553, null, function ($constraint) {
-                $constraint->aspectRatio();
-            });
-            $resize->save();
-        }
-        if($request->has('image3')){
-            if($request->old_image3){
-                unlink('storage/app/public/'.$request->old_image3);
-            }
-            $career->update([
-                'image3' => $request->image3->store('admin/career','public'),
-            ]);
-            $resize = Image::make('storage/app/public/'.$career->image3)->resize(706, null, function ($constraint) {
-                $constraint->aspectRatio();
-            });
-            $resize->save();
+            // $resize = Image::make('storage/app/public/'.$career->file)->resize(706, null, function ($constraint) {
+            //     $constraint->aspectRatio();
+            // });
+            // $resize->save();
         }
 
         $data = $request->validate([
-            'division_id'=>'required|max:191',
-            'district_id'=>'required|max:191',
-            'name'=>'required|max:191',
-            'slug'=>'required|max:191',
-            'email'=>'required|max:191',
-            'phone'=>'required|max:15',
-            'profession'=>'required|max:191',
-            'expert_in'=>'',
-            'career_obj'=>'',
+
+
+            'division_id'=>'required|max:11|integer',
+            'district_id'=>'required|max:11|integer',
+            'title'=>'required|max:191',
+            // 'slug'=>'required|max:191',
             'experience_year'=>'max:191',
+            'address'=>'max:191',
+            'job_time'=>'max:191',
+            'job_type'=>'max:191',
+            'shift'=>'max:191',
+            'salary'=>'max:191',
+            'benefit'=>'',
+            'deadline'=>'max:191',
+            'note'=>'',
             'description'=>'',
-            'link'=>'max:191',
+            'responsibility'=>'',
+            'requirement'=>'',
             'meta_tag'=>'',
+            'meta_description'=>'',
+            'file'=>'',
+
         ]);
 
         $career->update($data);
@@ -164,14 +157,8 @@ class CareerController extends Controller
     
     public function delete(career $career)
     {
-        if($career->image){
-        unlink('storage/app/public/'.$career->image);
-        }
-        if($career->image2){
-        unlink('storage/app/public/'.$career->image2);
-        }
-        if($career->image3){
-        unlink('storage/app/public/'.$career->image3);
+        if($career->file){
+        unlink('storage/app/public/'.$career->file);
         }
       
         $career->delete();
@@ -225,35 +212,16 @@ class CareerController extends Controller
 
     private function storeImage($career)
     {
-        if(request()->hasFile('image')){
+        if(request()->hasFile('file')){
             $career->update([
-                'image' => request()->image->store('admin/career','public'),
+                'file' => request()->file->store('admin/career','public'),
             ]);
-        $resize = Image::make('storage/app/public/'.$career->image)->resize(706, null, function ($constraint) {
-                $constraint->aspectRatio();
-            });
-        $resize->save();
+        // $resize = Image::make('storage/app/public/'.$career->file)->resize(706, null, function ($constraint) {
+        //         $constraint->aspectRatio();
+        //     });
+        // $resize->save();
         }
 
-        if(request()->hasFile('image2')){
-            $career->update([
-                'image2' => request()->image2->store('admin/career','public'),
-            ]);
-        $resize = Image::make('storage/app/public/'.$career->image2)->resize(553, null, function ($constraint) {
-                $constraint->aspectRatio();
-            });
-        $resize->save();
-        }
-
-        if(request()->hasFile('image3')){
-            $career->update([
-                'image3' => request()->image3->store('admin/career','public'),
-            ]);
-        $resize = Image::make('storage/app/public/'.$career->image3)->resize(707, null, function ($constraint) {
-                $constraint->aspectRatio();
-            });
-        $resize->save();
-        }
     }
 
 
@@ -261,6 +229,76 @@ class CareerController extends Controller
         $district = District::where('division_id',$id)->get();
         return json_encode($district);
     }
+
+
+    //Career All Applied Applicants Functions 
+
+    public function careerApplied()
+    {
+        $careerapplied = Careerapply::latest()->get();
+        $count = 1;
+        return view('admin.career.new_applied',compact('careerapplied','count'));
+    }
+
+
+    public function viewApplicant(careerapply $applicant)
+    {
+        return view('admin.career.view_applicant',compact('applicant'));
+     
+    }
+
+    public function deleteApplicant(careerapply $careerapply)
+    {
+        if($careerapply->file){
+        unlink('storage/app/public/'.$careerapply->file);
+        }
+        if($careerapply->image){
+        unlink('storage/app/public/'.$careerapply->image);
+        }
+      
+        $careerapply->delete();
+        return redirect()->back()->with('success',"Delete Successfully");
+     
+    }
+
+    
+    public function activeApplicant(careerapply $careerapply)
+    {
+        $careerapply->update(['status' => 1]);
+        if($careerapply){
+            $notification = array(
+                'messege' =>'careerapply activate successfull',
+                'alert-type' =>'success'
+            );
+            return redirect()->back()->with($notification);
+        }else{
+            $notification = array(
+                'messege' =>'Ups!!something went wrong!',
+                'alert-type' =>'error'
+            );
+            return redirect()->back()->with($notification);
+        }
+    }
+
+    
+    public function deactiveApplicant(careerapply $careerapply)
+    {
+        $careerapply->update(['status' => 0]);
+        if($careerapply){
+            $notification = array(
+                'messege' =>'careerapply deactivate successfull',
+                'alert-type' =>'success'
+            );
+            return redirect()->back()->with($notification);
+        }else{
+            $notification = array(
+                'messege' =>'Ups!!something went wrong!',
+                'alert-type' =>'error'
+            );
+            return redirect()->back()->with($notification);
+        }
+    }
+
 
 
 }

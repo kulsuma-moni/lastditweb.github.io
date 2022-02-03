@@ -26,6 +26,8 @@ class CreateBlogsTable extends Migration
             $table->string('date')->nullable();
             $table->text('meta_tag')->nullable();
             $table->text('meta_description')->nullable();
+            $table->string('trend')->nullable();
+            $table->string('importent')->nullable();
             $table->integer('status')->default(1);
             $table->timestamps();
         });

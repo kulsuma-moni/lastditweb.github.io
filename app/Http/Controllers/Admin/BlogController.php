@@ -19,20 +19,20 @@ class BlogController extends Controller
 
     public function blogs()
     {
-        $blogs =  blog::where('user_id',Auth::user()->id)->where('status',1)->get();
+        $blogs =  blog::where('user_id',Auth::user()->id)->where('status',1)->latest()->get();
         $count = 1;
         return view('editor.blog.index_blog',compact('blogs','count'));
     }
     public function userdeactiveBlog()
     {
-        $blogs =  blog::where('user_id',Auth::user()->id)->where('status',0)->get();
+        $blogs =  blog::where('user_id',Auth::user()->id)->where('status',0)->latest()->get();
         $count = 1;
         return view('editor.blog.index_blog',compact('blogs','count'));
     }
 
     public function index()
     {
-        $blogs =  blog::where('status',1)->get();
+        $blogs =  blog::where('status',1)->latest()->get();
         $count = 1;
         return view('admin.blog.index_blog',compact('blogs','count'));
     }
@@ -46,17 +46,23 @@ class BlogController extends Controller
     public function store(Request $request)
     {
         $request->validate([
+            'title' => 'min:15|max:191',
             'description'=>'required',
+            'slug'=>'required|unique:blogs|max:191',
         ]);
+
+        // $slug = preg_replace('/[^A-Za-z0-9\-]/', '', $request->slug);
 
         $blog = blog::create([
 
             'title'=>$request->title,
             'user_id'=>Auth::id(),
-            'slug'=> Str::slug($request->title).'-'.time(),
+            'slug'=> $request->slug,
             'image'=>$request->image,
             'description'=>$request->description,
             'month'=> date("F-Y"),
+            'trend'=>$request->trend,
+            'importent'=>$request->importent,
             'meta_tag'=>$request->meta_tag,
             'meta_description'=>$request->meta_description,
 
@@ -86,6 +92,7 @@ class BlogController extends Controller
     public function update(blog $blog,Request $request)
     {
         $request->validate([
+            'title' => 'min:15|max:191',
             'description'=>'required',
         ]);
 
@@ -97,7 +104,7 @@ class BlogController extends Controller
              $blog->update([
                  'image' => $request->image->store('admin/blog','public'),
              ]);
-            $resize = Image::make('storage/app/public/'.$blog->image)->resize(1000,500);
+            $resize = Image::make('storage/app/public/'.$blog->image)->resize(550,320);
             $resize->save();
          }
 
@@ -111,6 +118,8 @@ class BlogController extends Controller
             // 'user_id'=> Auth::id(),
             // 'image'=>$request->image,
             'description'=>$request->description,
+            'trend'=>$request->trend,
+            'importent'=>$request->importent,
             'meta_tag'=>$request->meta_tag,
             'meta_description'=>$request->meta_description,
 
@@ -130,7 +139,7 @@ class BlogController extends Controller
     public function delete(blog $blog)
     {
         if($blog->image){
-        unlink('storage/app/public/'.$blog->image);
+            unlink('storage/app/public/'.$blog->image);
         }
       
         $blog->delete();
@@ -202,7 +211,7 @@ class BlogController extends Controller
             $blog->update([
                 'image' => request()->image->store('admin/blog','public'),
             ]);
-            $resize = Image::make('storage/app/public/'.$blog->image)->resize(1000,500);
+            $resize = Image::make('storage/app/public/'.$blog->image)->resize(550,320);
             $resize->save();
         }
     }

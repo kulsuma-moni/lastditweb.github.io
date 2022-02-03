@@ -8,10 +8,10 @@
 		<div class="about-wrap">
 			<div class="container">
 				<div class="ellipse1">
-					<img src="assets/images/Ellipse1.svg" alt="" class="img-fluid">
+					<img src="{{ asset('public/frontend/assets/images/Ellipse1.svg') }}" alt="" class="img-fluid">
 				</div>
 				<div class="ellipse2">
-					<img src="assets/images/Ellipse2.svg" alt="" class="img-fluid">
+					<img src="{{ asset('public/frontend/assets/images/Ellipse2.svg') }}" alt="" class="img-fluid">
 				</div>
 				<div class="row">
 					<div class="col-lg-12 mx-auto">
@@ -31,61 +31,109 @@
 	</section>
 	<!--End About Inner Area-->
 	<!--Start Service content area-->
-	<section class="service-content-area">
+	<section class="service_content_area">
 		<div class="container">
 			<div class="row">
-				<div class="col-lg-4">
-					<div class="service-sidebar">
-						<div class="menu-service">
-							<ul>
-								@foreach($services as $service)
-								<li><a href="{{ route('single.service',$service->slug) }}">{{ $service->title }}</a>
-								</li>
-								@endforeach
-							</ul>
-						</div>
-						<div class="service-content-box">
-							<div class="service-title">
-								<h3>Need Any Help For Business ?</h3>
-								<p>Lorem ipsum dolor sit amet, consectetur sed adipiscing elit.</p>
-								<div class="box-btn"> <a href="contact.html" class="default">Contact Us</a>
-								</div>
-							</div>
-						</div>
-						@if(session('success'))
-                          <div class="alert alert-success">
-                              <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-                              <strong>Success!</strong> {{session('success')}}.
-                          </div>
-                        @endif
-						<h4>Counselling Area</h4>
-						<form  action="{{ route('create.contact') }}" method="post">
-							 @csrf
-							
-                           <input type="text" placeholder="Your Name" name="name" value="" class="form-control " required  oninvalid="this.setCustomValidity('Enter Your Name Here')"
-							    oninput="this.setCustomValidity('')">
-
-                           <input type="number" placeholder="Phone Number" name="phone" value="" class="form-control  " >
-                           <input type="email" placeholder="Email Address" name="email" value="" class="form-control  " required  oninvalid="this.setCustomValidity('Enter Valid Email Here')"
-							    oninput="this.setCustomValidity('')">
-                           <input type="hidden" value="2" name="devide">
-                           <div class="form-floating">
-                              <textarea class="form-control" name="message" placeholder="Leave a comment here" id="floatingTextarea2" style="height: 100px"  required  oninvalid="this.setCustomValidity('Write a message here')"
-							    oninput="this.setCustomValidity('')"></textarea>
-                              <label for="floatingTextarea2">Comments</label>
-                           </div>
-                           <button type="submit" class="btn  default">Submit</button>
-						</form>
+				<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+					<div class="top_titel text-center">
+						<h2>Services We Provide</h2>
 					</div>
 				</div>
-				<div class="col-lg-8">
-					<div class="service-area">
-						<div class="service-image">
-							@if($lastservice)<img src="{{ asset('storage/app/public/'.$lastservice->image) }}" alt="" class="img-fluid">@endif
+			</div>
+			<div class="row">
+				<div class="col-xl-4 col-lg-4 col-md-6 col-sm-12">
+					<div class="service_box">
+						<div class="icon_box">
+							<img src="{{ asset('public/frontend/assets/images/webdesign.png') }}" alt="">
 						</div>
-						<div class="service-content">
-							<h4>@if($lastservice){{ $lastservice->title }}@endif</h4>
-							@if($lastservice){!! $lastservice->description !!}@endif
+						<div class="titel">
+							<h3>Web design & development</h3>
+						</div>
+						<div class="details">
+							<p>Lorem ipsum dolor sit amet, cosectetur adipisicing elit, sed deimod empor inddunt ut ualor sit amet</p>
+						</div>
+						<div class="service_details_btn">
+							<a href="#" class="btn details_btn">learn more <i class="fas fa-arrow-right"></i></a>
+						</div>
+					</div>
+				</div>
+				<div class="col-xl-4 col-lg-4 col-md-6 col-sm-12">
+					<div class="service_box">
+						<div class="icon_box">
+							<img src="{{ asset('public/frontend/assets/images/app.png') }}" alt="">
+						</div>
+						<div class="titel">
+							<h3>Aplication Development</h3>
+						</div>
+						<div class="details">
+							<p>Lorem ipsum dolor sit amet, cosectetur adipisicing elit, sed deimod empor inddunt ut ualor sit amet</p>
+						</div>
+						<div class="service_details_btn">
+							<a href="#" class="btn details_btn">learn more <i class="fas fa-arrow-right"></i></a>
+						</div>
+					</div>
+				</div>
+				<div class="col-xl-4 col-lg-4 col-md-6 col-sm-12">
+					<div class="service_box">
+						<div class="icon_box">
+							<img src="{{ asset('public/frontend/assets/images/graphics.png') }}" alt="">
+						</div>
+						<div class="titel">
+							<h3>Graphics Design</h3>
+						</div>
+						<div class="details">
+							<p>Lorem ipsum dolor sit amet, cosectetur adipisicing elit, sed deimod empor inddunt ut ualor sit amet</p>
+						</div>
+						<div class="service_details_btn">
+							<a href="#" class="btn details_btn">learn more <i class="fas fa-arrow-right"></i></a>
+						</div>
+					</div>
+				</div>
+				<div class="col-xl-4 col-lg-4 col-md-6 col-sm-12">
+					<div class="service_box">
+						<div class="icon_box">
+							<img src="{{ asset('public/frontend/assets/images/digital.png') }}" alt="">
+						</div>
+						<div class="titel">
+							<h3>Digital Marketing</h3>
+						</div>
+						<div class="details">
+							<p>Lorem ipsum dolor sit amet, cosectetur adipisicing elit, sed deimod empor inddunt ut ualor sit amet</p>
+						</div>
+						<div class="service_details_btn">
+							<a href="#" class="btn details_btn">learn more <i class="fas fa-arrow-right"></i></a>
+						</div>
+					</div>
+				</div>
+				<div class="col-xl-4 col-lg-4 col-md-6 col-sm-12">
+					<div class="service_box">
+						<div class="icon_box">
+							<img src="{{ asset('public/frontend/assets/images/ux.png') }}" alt="">
+						</div>
+						<div class="titel">
+							<h3>UX/UI Designing</h3>
+						</div>
+						<div class="details">
+							<p>Lorem ipsum dolor sit amet, cosectetur adipisicing elit, sed deimod empor inddunt ut ualor sit amet</p>
+						</div>
+						<div class="service_details_btn">
+							<a href="#" class="btn details_btn">learn more <i class="fas fa-arrow-right"></i></a>
+						</div>
+					</div>
+				</div>
+				<div class="col-xl-4 col-lg-4 col-md-6 col-sm-12">
+					<div class="service_box">
+						<div class="icon_box">
+							<img src="{{ asset('public/frontend/assets/images/video.png') }}" alt="">
+						</div>
+						<div class="titel">
+							<h3>Video Editing</h3>
+						</div>
+						<div class="details">
+							<p>Lorem ipsum dolor sit amet, cosectetur adipisicing elit, sed deimod empor inddunt ut ualor sit amet</p>
+						</div>
+						<div class="service_details_btn">
+							<a href="#" class="btn details_btn">learn more <i class="fas fa-arrow-right"></i></a>
 						</div>
 					</div>
 				</div>

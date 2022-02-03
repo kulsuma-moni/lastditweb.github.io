@@ -4,7 +4,7 @@
   $blogcates = App\Models\Admin\Blogcate::latest()->get();
   // $tags = App\Models\Admin\Tag::where('status',1)->get();
 
-  // $blogs = App\Models\Admin\Blog::latest()->get();
+  $recentblogs = App\Models\Admin\Blog::where('status',1)->latest()->limit('3')->get();
   // $latestblogs = App\Models\Admin\Blog::latest()->limit(5)->get();
   // $randomblogs = App\Models\Admin\Blog::inRandomOrder()->limit(5)->get();
   $randomcates = App\Models\Admin\Blogcate::inRandomOrder()->limit(12)->get();
@@ -17,9 +17,10 @@
     <div class="widget-area">
         <div class="widget widget_search">
             <h3 class="widget-title">Search</h3>
-            <form class="search-form">
+            <form class="search-form" action="{{ route('search') }}" method="post">
+                @csrf
                 <label><span class="screen-reader-text">Search for:</span>
-                    <input type="search" class="search-field" placeholder="Search...">
+                    <input type="search" name="search" class="search-field" placeholder="Search...">
                 </label>
                 <button type="submit"><i class="fas fa-search"></i>
                 </button>
@@ -29,34 +30,22 @@
     <div class="widget">
         <h3 class="widget-title">Recent news</h3>
         <div class="recent_news widget_recent_news">
+            @foreach($recentblogs as $blog)
             <div class="single_news">
                 <div class="news_img">
-                    <a href="#"><img src="assets/images/blog1.png" alt="image"></a>
+                    <a href="{{ route('single.blog',$blog->slug) }}"><img src="{{ asset('storage/app/public/'.$blog->image) }}" alt="{{ $blog->title }}"></a>
                 </div>
-                <h5> <a href="#">The lengthy show-and-tell style post featured a long</a></h5>
-                <div class="date">22 May, 2020</div>
+                <h5> <a href="{{ route('single.blog',$blog->slug) }}">{{ Str::words($blog->title,'6','..') }}</a></h5>
+                <div class="date">{{ $blog->created_at->format('d F,Y') }}</div>
             </div>
-            <div class="single_news">
-                <div class="news_img">
-                    <a href="#"><img src="assets/images/blog2.png" alt="image"></a>
-                </div>
-                <h5> <a href="#">The lengthy show-and-tell style post featured a long</a> </h5>
-                <div class="date">20 May, 2020</div>
-            </div>
-            <div class="single_news">
-                <div class="news_img">
-                    <a href="#"><img src="assets/images/blog3.png" alt="image"></a>
-                </div>
-                <h5> <a href="">The lengthy show-and-tell style post featured a long</a> </h5>
-                <div class="date">20 july, 2020</div>
-            </div>
+            @endforeach
         </div>
     </div>
     <div class="widget widget_categories">
         <h3 class="widget-title">Categories</h3>
         <ul>
             @foreach($blogcates as $blogcate)
-            <li><a href="">{{ $blogcate->name }} <span class="post-count">(03)</span></a>
+            <li><a href="{{ route('category.blogs',$blogcate->slug) }}">{{ $blogcate->name }} <span class="post-count">({{ $blogcate->blog->count() }})</span></a>
             </li>
             @endforeach
         </ul>
@@ -70,7 +59,7 @@
                     $archcount = App\Models\Admin\Blog::where('month', $dt->format("F-Y"))->count();
                 @endphp
                 @if($archcount > 0)
-                    <li><a href="">{{ $dt->format("F-Y") }}<span class="post-count">({{ $archcount }})</span></a>
+                    <li><a href="{{ route('archieve.month',$dt->format("F-Y")) }}">{{ $dt->format("F-Y") }}<span class="post-count">({{ $archcount }})</span></a>
                 </li>
                 @endif
             @endforeach
@@ -79,7 +68,7 @@
     <div class="widget widget_tag_cloud">
         <h3 class="widget-title">Popular Tags</h3>
       
-        <div class="tagcloud"> @foreach($randomcates as $blogcate) <a href="/blog-details/#">{{ $blogcate->name }} <span class="tag-link-count">(3)</span></a>@endforeach
+        <div class="tagcloud"> @foreach($randomcates as $blogcate) <a href="{{ route('category.blogs',$blogcate->slug) }}">{{ $blogcate->name }} <span class="tag-link-count">({{ $blogcate->blog->count() }})</span></a>@endforeach
         </div>
     </div>
 </div>

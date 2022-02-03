@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Admin\Division;
 use App\Models\Admin\Freelancer;
+use App\Models\Admin\Career;
 use App\Models\Admin\Entrepreneur;
 
 class District extends Model
@@ -25,6 +26,12 @@ class District extends Model
     public function Entrepreneur()
     {
         return $this->hasMany(Entrepreneur::class);
+    }
+
+
+    public function Career()
+    {
+        return $this->hasMany(Career::class);
     }
 
 }

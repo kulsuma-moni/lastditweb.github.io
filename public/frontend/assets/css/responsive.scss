@@ -293,9 +293,9 @@
     .leader-wrapper-area .circle {
         display:none;
     }
-    .leader-wrapper-area .leader-wrap .leader-speech p {
-        font-size: 10px;
-    }
+    // .leader-wrapper-area .leader-wrap .leader-speech p {
+    //     font-size: 10px;
+    // }
     .leader-wrapper-area .leader-wrap .leader-speech h4 {
         font-size: 15px;
     }
@@ -323,7 +323,7 @@
         width: 66%;
     }
     .job-banner-wrapper h1 {
-        font-size: 42px;
+        font-size: 36px !important;
     }
     .job-banner-wrapper .image::before {
         width:100%;
@@ -418,7 +418,12 @@
         font-size: 20px;
     }
     .default {
-        padding: 12px 40px;
+        padding: 12px 26px;
+        font-size: 15px;
+    }
+    .default-one{
+        padding: 12px 26px;
+        font-size: 15px;
     }
     .solution-wrapper .solution-wrap .box-content .box-area p {
         font-size: 12px;
@@ -465,7 +470,7 @@
       margin-top:0;
     }
     .solution-wrapper .solution-wrap .content {
-        margin: 40px auto 0 0;
+        margin: 40px auto 0 auto;
     }
 }
 @media (max-width: 575px){
@@ -512,11 +517,8 @@
     .solution-content {
         text-align: center;
     }
-    .glassmo .banner-bottom .mail .mail-description {
-        text-align: center;
-    }
     .job-banner-wrapper h1 {
-        font-size: 36px;
+        font-size: 28px !important;
     }
     .freelance-wrapper-area {
         padding: 20px 0px 20px 0px;
@@ -585,7 +587,7 @@
         margin-top: 85px;
     }
     .banner-wrapper-area .banner-wrap {
-        margin-top: 165px;
+        margin-top: 90px;
     }
     .project-wrapper-area-two {
         overflow: hidden;
@@ -645,9 +647,6 @@
     .contact-title h2 {
         font-size: 15px;
     }
-    .default {
-        font-size: 17px;
-    }
     .project-title h2 {
         font-size: 20px;
     }
@@ -681,9 +680,9 @@
     .plan-area-wrapper {
         padding: 50px 0px 0px 0px;
     }
-    .leader-wrapper-area .leader-wrap .leader-speech p {
-        font-size: 12px;
-    }    
+    // .leader-wrapper-area .leader-wrap .leader-speech p {
+    //     font-size: 12px;
+    // }    
     .counselling-wrapper h3 {
         font-size: 25px;
     }
@@ -703,21 +702,16 @@
     .counselling-wrapper {
         padding: 50px 0px 0px 0px;
     }
-    .banner-wrapper-area .banner-wrap .banner-content .btn-default {
-        display: block;
-    }  
+    // .banner-wrapper-area .banner-wrap .banner-content .btn-default {
+    //     display: block;
+    // }  
     .banner-wrapper-area .banner-wrap .banner-content h1 {
         font-size: 30px;
     }
     .banner-wrapper-area .banner-wrap .banner-content p {
         font-size: 16px;
     }
-    .button-two {
-        margin-top: 45px;
-    } 
-    .banner-wrapper-area .banner-wrap .banner-content .btn-default .default-one {
-        margin-left: 0;
-    }
+
     .solution-wrapper .solution-wrap .solution-content h2 {
         font-size: 25px;
     }
@@ -753,12 +747,12 @@
         font-size: 12px;
         
     }
-    .footer-area .single-footer-widget .footer-links-list li a {
-        font-size: 12px;
-    }
-    .footer-area .single-footer-widget .footer-contact-info li a {
-        font-size: 12px;
-    }
+    // .footer-area .single-footer-widget .footer-links-list li a {
+    //     font-size: 12px;
+    // }
+    // .footer-area .single-footer-widget .footer-contact-info li a {
+    //     font-size: 12px;
+    // }
     .banner-wrapper-area .round-3 {
         display:none;
     }
@@ -766,6 +760,18 @@
 @media (max-width: 376px) {
     .procedure-wrapper-area .nav-tabs .nav-link {
         margin-bottom: 10px;
+    }
+}
+@media (max-width:340px){
+    .banner-wrapper-area .banner-wrap .banner-content .btn-default {
+        display: block;
+    }
+    .banner-wrapper-area .banner-wrap .banner-content .btn-default .default-one {
+        margin-left: 0;
+        padding: 12px 31px;
+    }
+    .button-two {
+        margin-top: 45px;
     }
 }
 @media (max-width:325px) {
@@ -883,9 +889,6 @@
     .single-blog-wrapper-area .article-content .article-footer {
         text-align:left;
     }
-    .blog_page_ctn .blog_top_post_left{
-        margin-bottom: 30px;
-    }
     .blog_page_ctn .blog_top_post_right {
         margin-bottom: 30px;
     }
@@ -915,6 +918,124 @@
     .experience-wrapper-area .em-bar-big {
         left: 0%;
     }
+    .footer-area .single-footer-widget .social-link li {
+        margin-right: 2px;
+    }
+    .footer-area .single-footer-widget .social-link li a {
+        width: 26px;
+        height: 26px;
+        line-height: 26px;
+        font-size: 15px;
+    }
+    .mail_box_area .mail_box h2 {
+        font-size: 30px;
+    }
+    .mail_box_area .mail_box a {
+        font-size: 30px;
+    }
+    .mail_box_area {
+        padding: 80px 0 100px;
+    }
+    .review_area .review-title h2 {
+        font-size: 25px;
+    }
+    .top_author_area .review-title h2 {
+        font-size: 25px;
+    }
+    .blog_page_ctn .blog_top_post_right .blog_info {
+        padding: 20px 10px 10px;
+    }
+    .blog_page_ctn .review-title h2 {
+        font-size: 25px;
+    }
+    .trendy_post_area .review-title h2 {
+        font-size: 25px;
+    }
+    .blog_page_ctn .blog_box {
+        width: 320px;
+        margin: 0 auto 30px;
+    }
+    .trendy_post_area .trendy_post_box {
+        width: 320px;
+        margin: 0 auto 40px;
+    }
+    .single-banner-wrapper .hero-content-area {
+        top: 25%;
+        left: 3%;
+    }
+    .single-banner-wrapper .hero-content-area p {
+        width: 98%;
+    }
+    .top_freelencer_details .top_flencer_left_nav .nav {
+        padding: 30px 15px;
+        width: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        display: flex;
+        flex-direction: row !important;
+        margin-top: 20px;
+        justify-content: center;
+    }
+    .top_freelencer_details .top_flencer_left_nav .nav .default {
+        padding: 9px 15px;
+        font-size: 15px;
+        margin-right: 8px;
+    }
+    .top_freelencer_details .top_flencer_left_nav .tab-content {
+        width: 100%;
+        margin-top: 45%;
+    }
+    .top_frlancer_title span {
+        font-size: 60px;
+    }
+    .ad_box .ab_image {
+        margin-bottom: 30px;
+    }
+    .top_freelencer_details .top_flencer_left_nav .tab-content .ab_details .more_details ul li {
+        width: 100%;
+    }
+    .top_freelencer_details .top_flencer_left_nav .tab-content .experience_education .education_titel h3 {
+        font-size: 19px;
+        margin-bottom: 40px;
+    }
+    .top_freelencer_details .top_flencer_left_nav .tab-content .experience_education .ex_quali_item .main_container .brif p {
+        width: 100%;
+        font-size: 15px;
+    }
+    .top_freelencer_details .top_flencer_left_nav .tab-content .experience_education .ex_quali_item .main_container .titel h4 {
+        font-size: 18px;
+    }
+    .top_freelencer_details .top_flencer_left_nav .tab-content .skill_details .quali_item .main_counter .percent {
+        left: 32%;
+    }
+
+    .top_freelencer_details .top_flencer_left_nav .tab-content .service_details .tp_fr_service_box {
+        padding: 20px;
+    }
+    .top_freelencer_details .top_flencer_left_nav .tab-content .service_details .tp_fr_service_box .service_titel h4 {
+        font-size: 20px;
+    }
+    .tp_fr_contact_left_box {
+        margin-bottom: 40px;
+    }
+    .softrware_area .softower_content_area .software_box .soft_box_ctn {
+        flex-direction: column;
+      }
+      .softrware_area .softower_content_area .software_box .soft_box_ctn .box_left {
+        margin-bottom: 30px;
+      }
+      .softrware_area .softower_content_area .software_box .soft_box_ctn .box_right .list_pro {
+        margin-top: 30px;
+      }
+}
+@media (min-width:320px)and (max-width:400px){
+    .student_review_area .student_review_box .student_info .batch {
+        padding: 20px 6px;
+        span{
+            font-size: 14px;
+        }
+      }
 }
 @media (min-width: 576px) and(max-width:767px){
     .ceo_area_start{
@@ -1013,6 +1134,47 @@
     .experience-wrapper-area .em-bar-big {
         left: 0%;
     }
+    .mail_box_area .mail_box h2 {
+        font-size: 30px;
+    }
+    .mail_box_area .mail_box a {
+        font-size: 30px;
+    }
+    .mail_box_area {
+        padding: 80px 0 100px;
+    }
+    .single-banner-wrapper .hero-thumb-inner {
+        z-index: -1;
+    }
+    .single-banner-wrapper .hero-content-area {
+        left: 5%;
+      }
+      .top_freelencer_details .top_flencer_left_nav .nav {
+        padding: 30px 15px;
+        width: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        display: flex;
+        flex-direction: row !important;
+        margin-top: 20px;
+        justify-content: center;
+    }
+    .top_freelencer_details .top_flencer_left_nav .nav .default {
+        padding: 9px 15px;
+        font-size: 15px;
+        margin-right: 8px;
+    }
+    .top_freelencer_details .top_flencer_left_nav .tab-content {
+        width: 100%;
+        margin-top: 16%;
+    }
+    .ad_box .ab_image {
+        margin-bottom: 30px;
+    }
+    .tp_fr_contact_left_box {
+        margin-bottom: 40px;
+    }
 }
 @media (min-width: 768px) and(max-width:991px){
     .ceo_area_start{
@@ -1070,6 +1232,48 @@
     .experience-wrapper-area .em-bar-big {
         left: 0%;
     }
+    .top_freelencer_details .top_flencer_left_nav .nav {
+        padding: 30px 15px;
+        width: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        display: flex;
+        flex-direction: row !important;
+        margin-top: 20px;
+        justify-content: center;
+    }
+    .top_freelencer_details .top_flencer_left_nav .nav .default {
+        margin-right: 8px;
+    }
+    .top_freelencer_details .top_flencer_left_nav .tab-content {
+        width: 100%;
+        margin-top: 16%;
+    }
+    .top_freelencer_details .top_flencer_left_nav .tab-content .experience_education .ex_quali_item .main_container .brif p {
+        width: 100%;
+    }
+    .top_freelencer_details .top_flencer_left_nav .tab-content .skill_details .quali_item .main_counter .percent {
+        left: 36%;
+    }
+    .single-banner-wrapper .hero-content-area {
+        left: 5%;
+      }
+      .single-banner-wrapper .hero-content-area p {
+        width: 100%;
+    }
+    .single-banner-wrapper .hero-content-area h1 {
+        font-size: 42px;
+    }
+    .single-banner-wrapper .hero-thumb-inner {
+        width: 66%;
+    }
+    .student_review_area .student_review_box .student_info .batch {
+        
+        span{
+            font-size: 14px;
+        }
+      }
 }
 @media (min-width: 992px) and(max-width:1199px){
     .ceo_area_start .ceo_text_content .ceo_spc_de {

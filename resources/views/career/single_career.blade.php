@@ -50,7 +50,7 @@ $setting = App\Models\Admin\Setting::first();
                      </div>
                   </div>
                   <div class="group text-center">
-                     <a href="0#" class="default">Apply Now</a>
+                     <a href="{{ route('career.apply',$career->id) }}" class="default">Apply Now</a>
                   </div>
                </div>
             </div>

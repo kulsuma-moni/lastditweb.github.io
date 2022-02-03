@@ -41,7 +41,8 @@
                         <thead class="thead-light">
                             <tr>
                                 <th scope="col">Sl</th>
-                                <th scope="col">Title</th>
+                                <th scope="col">Name</th>
+                                <th scope="col">Email</th>
                                 <th scope="col">Date</th>
                                 <th scope="col">Action</th>
                             </tr>
@@ -50,10 +51,10 @@
                             @foreach($editors as $editor)
                             <tr>
                                 <td>{{ $count++ }}</td>
-                                <td>{{ $editor->title }}</td>
+                                <td>{{ $editor->name }}</td>
+                                <td>{{ $editor->email }}</td>
                                 <td>{{ $editor->created_at->format('d/m/Y') }}</td>
                                 <td>
-                                    <a class="btn btn-outline-info" href="{{ route('edit.editor',$editor->id) }}">Edit</a>
                                     <a class="btn btn-outline-danger" id="delete" href="{{ route('delete.editor',$editor->id) }}">Delete</a>
                                     @if($editor->is_editor == 1)
                                         <a class="btn btn-outline-primary" href="{{ route('deactive.editor',$editor->id) }}">Active</a>

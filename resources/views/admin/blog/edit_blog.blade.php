@@ -103,6 +103,23 @@
                             </div>
                             <div class="card-body">
                                 <div class="digital-add needs-validation">
+
+                                <div class="row">
+                                    <div class=" col-md-6">
+                                        <div class="form-group">
+                                            <label for="validationCustom05" class="col-form-label pt-0"> Trend </label>
+                                            <input class="form-control" id="validationCustom05" type="checkbox" value="1" @if($blog->trend == 1) checked @endif name="trend">
+                                        </div>
+                                        
+                                    </div>
+                                    <div class=" col-md-6">
+                                        <div class="form-group">
+                                            <label for="validationCustom05" class="col-form-label pt-0"> Ads </label>
+                                            <input class="form-control" id="validationCustom05" type="checkbox" value="1" name="importent"  @if($blog->importent == 1) checked @endif >
+                                        </div>
+                                        
+                                    </div>
+                                </div>
                                     <div class="form-group">
                                         <label for="validationCustom05" class="col-form-label pt-0"> Meta Title</label>
                                         <input class="form-control" id="validationCustom05" type="text" name="meta_tag" value="{{ $blog->meta_tag }}">

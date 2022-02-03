@@ -111,7 +111,7 @@ class FreelancerController extends Controller
             $freelancer->update([
                 'image2' => $request->image2->store('admin/freelancer','public'),
             ]);
-             $resize = Image::make('storage/app/public/'.$freelancer->image2)->resize(553, null, function ($constraint) {
+             $resize = Image::make('storage/app/public/'.$freelancer->image2)->resize(403, null, function ($constraint) {
                 $constraint->aspectRatio();
             });
             $resize->save();
@@ -123,7 +123,7 @@ class FreelancerController extends Controller
             $freelancer->update([
                 'image3' => $request->image3->store('admin/freelancer','public'),
             ]);
-            $resize = Image::make('storage/app/public/'.$freelancer->image3)->resize(707, null, function ($constraint) {
+            $resize = Image::make('storage/app/public/'.$freelancer->image3)->resize(507, null, function ($constraint) {
                 $constraint->aspectRatio();
             });
             $resize->save();
@@ -231,7 +231,7 @@ class FreelancerController extends Controller
             $freelancer->update([
                 'image2' => request()->image2->store('admin/freelancer','public'),
             ]);
-        $resize = Image::make('storage/app/public/'.$freelancer->image2)->resize(553, null, function ($constraint) {
+        $resize = Image::make('storage/app/public/'.$freelancer->image2)->resize(403, null, function ($constraint) {
                 $constraint->aspectRatio();
             });
         $resize->save();
@@ -241,7 +241,7 @@ class FreelancerController extends Controller
             $freelancer->update([
                 'image3' => request()->image3->store('admin/freelancer','public'),
             ]);
-        $resize = Image::make('storage/app/public/'.$freelancer->image3)->resize(707, null, function ($constraint) {
+        $resize = Image::make('storage/app/public/'.$freelancer->image3)->resize(507, null, function ($constraint) {
                 $constraint->aspectRatio();
             });
         $resize->save();

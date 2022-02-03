@@ -45,8 +45,17 @@
                             <div class="digital-add needs-validation">
                                 <div class="form-group">
                                     <label for="validationCustom01" class="col-form-label pt-0"><span>*</span>Blog Title</label>
-                                    <input class="form-control  @error('title') is-invalid @enderror" id="validationCustom01" type="text" required="" name="title" value="{{ old('title') }}"> 
+                                    <input class="form-control  @error('title') is-invalid @enderror" id="name" type="text" required="" name="title" value="{{ old('title') }}"> 
                                     @error('title')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+                                </div>
+                                <div class="form-group">
+                                    <label for="validationCustom01" class="col-form-label pt-0"><span>*</span>Slug</label>
+                                    <input class="form-control  @error('slug') is-invalid @enderror" id="slug" type="text" required="" name="slug" value="{{ old('slug') }}"> 
+                                    @error('slug')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
                                         </span>
@@ -101,13 +110,29 @@
                         </div>
                         <div class="card-body">
                             <div class="digital-add needs-validation">
+                                <div class="row">
+                                    <div class=" col-md-6">
+                                        <div class="form-group">
+                                            <label for="validationCustom05" class="col-form-label pt-0"> Trend </label>
+                                            <input class="form-control" id="validationCustom05" type="checkbox" value="1" name="trend">
+                                        </div>
+                                        
+                                    </div>
+                                    <div class=" col-md-6">
+                                        <div class="form-group">
+                                            <label for="validationCustom05" class="col-form-label pt-0"> Ads </label>
+                                            <input class="form-control" id="validationCustom05" type="checkbox" value="" name="importent">
+                                        </div>
+                                        
+                                    </div>
+                                </div>
                                 <div class="form-group">
                                     <label for="validationCustom05" class="col-form-label pt-0"> Meta Title</label>
-                                    <input class="form-control" id="validationCustom05" type="text" name="meta_tag">
+                                    <input class="form-control" id="validationCustom05" type="text" value="{{ old('meta_tag') }}" name="meta_tag">
                                 </div>
                                 <div class="form-group">
                                     <label class="col-form-label">Meta Description</label>
-                                    <textarea rows="4" cols="12" class="form-control" name="meta_description"></textarea>
+                                    <textarea rows="4" cols="12" class="form-control" name="meta_description">{{ old('description') }}</textarea>
 
                                 </div>
                             </div>
@@ -124,7 +149,7 @@
                             <div class="digital-add needs-validation">
                                 
                                 <div class="form-group">
-                                   <textarea style="height:300px" class=" @error('description') is-invalid @enderror" id="editor" name="description"></textarea>
+                                   <textarea style="height:300px" class=" @error('description') is-invalid @enderror" id="editor" name="description">{{ old('description') }}</textarea>
                                     @error('description')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>

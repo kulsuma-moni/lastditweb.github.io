@@ -8,7 +8,9 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use App\Models\Admin\Blog;
+use App\Models\Admin\Careerapply;
 use App\Models\User\Userdetail;
+use App\Models\User\Blogcomment;
 
 class User extends Authenticatable
 {
@@ -23,6 +25,8 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'is_editor',
+        'is_admin',
     ];
 
     /**
@@ -53,5 +57,14 @@ class User extends Authenticatable
     public function Userdetail()
     {
         return $this->hasOne(Userdetail::class);
+    }
+
+    public function Careerapply()
+    {
+        return $this->hasMany(Careerapply::class);
+    }
+    public function Blogcomment()
+    {
+        return $this->hasMany(Blogcomment::class);
     }
 }

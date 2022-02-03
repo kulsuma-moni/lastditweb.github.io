@@ -3,6 +3,7 @@
 @section('title','Create Course')
 
 @section('content')
+
 <!-- Start Page content -->
 <div class="content">
     <!-- Start Content -->
@@ -59,7 +60,7 @@
                         <div class="form-group row">
                             <label for="description" class="col-3 col-form-label">Description *</label>
                             <div class="col-9">
-                                <textarea name="description" class="form-control @error('description') is-invalid @enderror" cols="30" rows="10">{{ old('description') }}</textarea>
+                                <textarea name="description" id="editor1" class="form-control @error('description') is-invalid @enderror" cols="30" rows="10">{{ old('description') }}</textarea>
                                 @error('description')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
@@ -159,6 +160,13 @@
 <script>
     ClassicEditor
         .create(document.querySelector('#editor'))
+        .catch(error => {
+            console.error(error);
+        });
+</script>
+<script>
+    ClassicEditor
+        .create(document.querySelector('#editor1'))
         .catch(error => {
             console.error(error);
         });

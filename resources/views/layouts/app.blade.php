@@ -17,6 +17,8 @@ $setting = App\Models\Admin\Setting::first();
         <meta property="og:site_name" content="DelwarIT" />
         <link rel="shortcut icon" type="image/x-icon" href="{{ asset('storage/app/public/'.$setting->favicon)}}">
         <meta name="og:image" content="{{ asset('/storage/app/public/'.$setting->logo) }}"/>
+        <meta property="og:image:width" content="100%" />
+        <meta property="og:image:height" content="100%" />
         <meta name="og:title" content="{{ $setting->title }}" />
         <meta name="og:description" content="{{ $setting->meta_description }}" />
       @endif
@@ -34,6 +36,19 @@ $setting = App\Models\Admin\Setting::first();
       <link rel="canonical" href="http://delwarit.com/" />
       <link rel="canonical" href="http://smartcity.com.bd/" />
       <link rel="canonical" href="http://storialtech.com/" />
+        <style>
+        .translated-ltr{margin-top:-40px;}
+        .translated-ltr{margin-top:-40px;}
+        .goog-te-banner-frame {display: none;margin-top:-20px;}
+
+        .goog-logo-link {
+           display:none !important;
+        } 
+
+        .goog-te-gadget{
+           color: transparent !important;
+        }
+    </style>
 
 </head>
 <body>
@@ -43,7 +58,7 @@ $setting = App\Models\Admin\Setting::first();
     </div>     --}}
     <!--End Preloader Area-->
 
-    <a href="#" class="back2 aaa" style="display: block;"> <i class="fas fa-chevron-up" aria-hidden="true"></i> </a>
+    <a href="#" class="back2 aaa" style="display: block; margin-bottom:-80px;"> <i class="fas fa-chevron-up" aria-hidden="true"></i> </a>
     
     <!--Start Laptop Menu-->
     <header class="nav-wrapper fixed-top res-static">
@@ -79,17 +94,13 @@ $setting = App\Models\Admin\Setting::first();
                         </li>
                         <li class="nav-item   custom-nav-item home-nav">
                             <a class="nav-link custom-nav-link hvr-underline-from-left" href="{{ route('services') }}">Services</a>
-<<<<<<< HEAD
                         </li>
                         <li class="nav-item  custom-nav-item home-nav">
                             <a class="nav-link custom-nav-link hvr-underline-from-left" href="{{ route('blogs') }}">Blog</a>
-=======
->>>>>>> 8959a2407a8d7790f0ced5686f82baa21936dfee
+
                         </li>
-                        <li class="nav-item  custom-nav-item home-nav">
-                            <a class="nav-link custom-nav-link hvr-underline-from-left" href="{{ route('blogs') }}">Blog</a>
-                        </li>
-<<<<<<< HEAD
+
+
                         <!-- <li class="nav-item dropdown custom-nav-item home-nav">
                             <a class="nav-link custom-nav-link  hvr-underline-from-left home-nav-caret" href="#0">About</a>
                             <div class="dropdown-menu">
@@ -102,12 +113,11 @@ $setting = App\Models\Admin\Setting::first();
                         <!-- <li class="nav-item  custom-nav-item home-nav">
                             <a class="nav-link custom-nav-link hvr-underline-from-left" href="{{ route('login') }}">Account</a>
                         </li> -->
-=======
+
 
                         <li class="nav-item  custom-nav-item home-nav">
                             <a class="nav-link custom-nav-link hvr-underline-from-left" href="{{ route('careers') }}">Career</a>
                         </li>
->>>>>>> 8959a2407a8d7790f0ced5686f82baa21936dfee
                     </ul>
                     <a class=" custom-nav-link menu-btn" href="{{ route('start.project') }}">Start A Project</a>
                 </div>
@@ -128,7 +138,7 @@ $setting = App\Models\Admin\Setting::first();
         </div>
         <div class="container">
             <div class="row">
-                <div class="col-lg-4 col-md-6 col-sm-6">
+                <div class="col-lg-4 col-md-6 col-sm-6 col-12">
                     <div class="single-footer-widget">
                         <a class="logo" href="/"><img src="{{ asset('public/frontend/assets/images/logo2.png') }}" alt="logo"></a>
                         <p>@if($setting) {{ $setting->meta_description }} @endif</p>
@@ -140,7 +150,7 @@ $setting = App\Models\Admin\Setting::first();
                         </ul>
                     </div>
                 </div>
-                <div class="col-lg-2 col-md-6 col-sm-6">
+                <div class="col-lg-2 col-md-6 col-sm-6 col-6">
                     <div class="single-footer-widget pl-5">
                         <h3>Explore</h3>
                         <ul class="footer-links-list">
@@ -152,31 +162,34 @@ $setting = App\Models\Admin\Setting::first();
 
                             @guest
                             <li><a href="{{ route('login') }}">Account</a></li>
-                            </ul>
                             
                             @else
                             @if(Auth::user()->is_editor == 1 || Auth::user()->is_admin == 1)
                             <li><a href="{{ route('dashboard') }}">Dasboard</a></li>
-                            </ul>
                             @endif
+                            <li><a href="{{ route('logout') }}">Logout</a></li>
                             
                             @endguest
                         </ul>
                     </div>
                 </div>
-                <div class="col-lg-2 col-md-6 col-sm-6">
+                <div class="col-lg-2 col-md-6 col-sm-6 col-6">
                     <div class="single-footer-widget pl-5">
                         <h3>Resource</h3>
                         <ul class="footer-links-list">
-                            <li><a href="index.html">Team</a></li>
+                            <li><div id="google_translate_element"></div></li>
+                            <li><a href="{{ route('team') }}">Team</a></li>
                             <li><a href="{{ route('admission.form') }}">Admission</a></li>
                             <li><a href="{{ route('portfolios') }}">Portfolio</a></li>
                             <li><a href="{{ route('courses') }}">Courses</a></li>
                             <li><a href="{{ route('blogs') }}">Blog</a></li>
+                            <li><a href="{{ url('software') }}">Resources</a></li>
+                            <li><a href="{{ url('newcourses') }}">Newcourses</a></li>
+                            <li><a href="{{ url('streview') }}">Student Review</a></li>
                         </ul>
                     </div>
                 </div>
-                <div class="col-lg-4 col-md-6 col-sm-6">
+                <div class="col-lg-4 col-md-6 col-sm-6 col-12">
                     <div class="single-footer-widget">
                         <h3>Address</h3>
                         <ul class="footer-contact-info">
@@ -206,7 +219,46 @@ $setting = App\Models\Admin\Setting::first();
         <div class="footer-effect-two"></div>
         <div class="footer-effect-three"></div>
     </footer>
+
+<!-- Messenger Chat Plugin Code -->
+    <div id="fb-root"></div>
+
+    <!-- Your Chat Plugin code -->
+    <div id="fb-customer-chat" class="fb-customerchat">
+    </div>
+
+    <script>
+      var chatbox = document.getElementById('fb-customer-chat');
+      chatbox.setAttribute("page_id", "102715874633514");
+      chatbox.setAttribute("attribution", "biz_inbox");
+    </script>
+
+    <!-- Your SDK code -->
+    <script>
+      window.fbAsyncInit = function() {
+        FB.init({
+          xfbml            : true,
+          version          : 'v12.0'
+        });
+      };
+
+      (function(d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) return;
+        js = d.createElement(s); js.id = id;
+        js.src = 'https://connect.facebook.net/en_US/sdk/xfbml.customerchat.js';
+        fjs.parentNode.insertBefore(js, fjs);
+      }(document, 'script', 'facebook-jssdk'));
+    </script>
+
     <!--End Footer Area-->
+
+
+<script type="text/javascript">
+function googleTranslateElementInit() {
+  new google.translate.TranslateElement({pageLanguage: 'en'}, 'google_translate_element');
+}
+</script>
 
     <!-- Links of JS file -->
     <script src="{{ asset('public/frontend/assets/js/bootstrap.bundle.min.js')}}"></script>
@@ -218,23 +270,47 @@ $setting = App\Models\Admin\Setting::first();
     <script src="{{ asset('public/frontend/assets/js/custom.js')}}"></script>
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script src="{{ asset('public/frontend/assets/js/autofilter.js')}}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
+    <script src="{{ asset('public/frontend/assets/js/jquery.easypiechart.min.js')}}"></script>
+    <script src="{{ asset('public/frontend/assets/js/translate.js')}}"></script>
     <script>
-  $(function($) {
-    $.autofilter();
-});
-</script>
+        $(function($) {
+            $.autofilter();
+        });
+    </script>
+        <script>
+        // TYPED JS
+        var typed = new Typed('.type_txt', {
+            strings: ['Digitalized Up Your Business With <Span>Delwar IT</Span>', 'Develop your skill with <Span>Delwar IT</Span>'],
+            typeSpeed: 100,
+            backSpeed: 100,
+            backDelay: 900,
+            loop:true,
+            loopCount: Infinity,
+            showCursor: false,
+            smartBackspace: true // Default value
+        });
+    </script>
     <script>
     $(document).ready(function(){
 
     $("#testimonial-slider").owlCarousel({
         items:2,
-        margin:40,
         loop:true,
         pagination:true,
         navigation:false,
         autoplay:true,
         autoplayTimeout:6000,
         autoplayHoverPause:true,
+
+    margin:40,
+    loop:true,
+        pagination:true,
+        navigation:false,
+        autoplay:true,
+    autoplayTimeout:6000,
+    autoplayHoverPause:true,
+
         responsive:{
             0:{
                 items:1,
@@ -276,6 +352,124 @@ $setting = App\Models\Admin\Setting::first();
         }
         });
     });
+    </script>
+        <script>
+        	// Skill
+	$('.chart').easyPieChart({
+		barColor: '#0368ec',
+		trackColor: 'lightGray',
+		scaleColor: '#1AA7F1',
+		scaleLength: 5,
+		lineCap: 'round',
+		lineWidth: 8,
+		trackWidth: undefined,
+		size: 110,
+		rotate: 0, // in degrees
+		animate: {
+			duration: 1000,
+			enabled: true
+		},
+		easing: function (x, t, b, c, d) { // easing function
+			t = t / (d/2);
+			if (t < 1) {
+			return c / 2 * t * t + b;
+			}
+			return -c/2 * ((--t)*(t-2) - 1) + b;
+		}
+		});
+
+    </script>
+        <script>
+        function redmore1() {
+        var dots = document.getElementById("dots1");
+        var moreText = document.getElementById("re_text1");
+        var btnText = document.getElementById("red_mo1");
+
+        if (dots.style.display === "none") {
+            dots.style.display = "inline";
+            btnText.innerHTML = "Read more"; 
+            moreText.style.display = "none";
+        } else {
+            dots.style.display = "none";
+            btnText.innerHTML = "Read less"; 
+            moreText.style.display = "inline";
+        }
+        }
+        function redmore2() {
+        var dots = document.getElementById("dots2");
+        var moreText = document.getElementById("re_text2");
+        var btnText = document.getElementById("red_mo2");
+
+        if (dots.style.display === "none") {
+            dots.style.display = "inline";
+            btnText.innerHTML = "Read more"; 
+            moreText.style.display = "none";
+        } else {
+            dots.style.display = "none";
+            btnText.innerHTML = "Read less"; 
+            moreText.style.display = "inline";
+        }
+        }
+        function redmore3() {
+        var dots = document.getElementById("dot3");
+        var moreText = document.getElementById("re_text3");
+        var btnText = document.getElementById("red_mo3");
+
+        if (dots.style.display === "none") {
+            dots.style.display = "inline";
+            btnText.innerHTML = "Read more"; 
+            moreText.style.display = "none";
+        } else {
+            dots.style.display = "none";
+            btnText.innerHTML = "Read less"; 
+            moreText.style.display = "inline";
+        }
+        }
+        function redmore4() {
+        var dots = document.getElementById("dots4");
+        var moreText = document.getElementById("re_text4");
+        var btnText = document.getElementById("red_mo4");
+
+        if (dots.style.display === "none") {
+            dots.style.display = "inline";
+            btnText.innerHTML = "Read more"; 
+            moreText.style.display = "none";
+        } else {
+            dots.style.display = "none";
+            btnText.innerHTML = "Read less"; 
+            moreText.style.display = "inline";
+        }
+        }
+        function redmore5() {
+        var dots = document.getElementById("dots5");
+        var moreText = document.getElementById("re_text5");
+        var btnText = document.getElementById("red_mo5");
+
+        if (dots.style.display === "none") {
+            dots.style.display = "inline";
+            btnText.innerHTML = "Read more"; 
+            moreText.style.display = "none";
+        } else {
+            dots.style.display = "none";
+            btnText.innerHTML = "Read less"; 
+            moreText.style.display = "inline";
+        }
+        }
+        function redmore6() {
+        var dots = document.getElementById("dots6");
+        var moreText = document.getElementById("re_text6");
+        var btnText = document.getElementById("red_mo6");
+
+        if (dots.style.display === "none") {
+            dots.style.display = "inline";
+            btnText.innerHTML = "Read more"; 
+            moreText.style.display = "none";
+        } else {
+            dots.style.display = "none";
+            btnText.innerHTML = "Read less"; 
+            moreText.style.display = "inline";
+        }
+        }
     </script>
     
 </body>

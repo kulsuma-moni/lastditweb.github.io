@@ -38,7 +38,7 @@
                   <ul class="nav nav-tabs" id="myTab" role="tablist">
                      @foreach($courses as $cours)
                      <li class="nav-item item" role="presentation">
-                        <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#{{ $cours->slug }}" type="button" role="tab" aria-controls="home" aria-selected="true">{{ $cours->name }}</button>
+                        <a class="nav-link active" href="{{ route('single.course',$cours->slug) }}" role="tab" aria-controls="home" aria-selected="true">{{ $cours->name }}</a>
                      </li>
                      @endforeach
                   </ul>

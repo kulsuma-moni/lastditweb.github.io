@@ -154,7 +154,7 @@ Portfolio Area CSS
 								@foreach($portfolios as $portfolio)
 								<div class="col-lg-4 col-sm-6 col-md-6 grid-item {{ $portfoliocate->slug }}">
 									<div class="portfolio-content">
-										<a class="popup-youtube" href="https://delwarit.com/">
+										<a class="popup-youtube" href="{{$portfolio->link}}">
 											<div class="portfolio-image">
 												<img src="{{ asset('storage/app/public/'.$portfolio->image) }}" alt="" class="img-fluid">
 											</div>
@@ -163,7 +163,7 @@ Portfolio Area CSS
 										<div class="portfolio-inner">
 											<h4>{{ $portfolio->name }}</h4>
 											<div class="cart">
-												<p><a href="https://delwarit.com/">Preview→</a>
+												<p><a href="{{$portfolio->link}}">Preview→</a>
 												</p>
 											</div>
 										</div>
@@ -171,171 +171,6 @@ Portfolio Area CSS
 								</div>
 								@endforeach
 							</div>
-							<!-- <div class="tab-pane" id="messages" role="tabpanel" aria-labelledby="messages-tab">
-								<div class="row justify-content-center">
-									<div class="col-lg-4 col-sm-6 col-md-6">
-										<div class="portfolio-content">
-											<a class="popup-youtube" href="https://nurayni.github.io/Personal/">
-												<div class="portfolio-image">
-													<img src="assets/images/9.png" alt="" class="img-fluid">
-												</div>
-											</a>
-											<hr>
-											<div class="portfolio-inner">
-												<h4>Portfolio Website</h4>
-												<div class="cart">
-													<p><a href="https://nurayni.github.io/Personal/">Preview→</a>
-													</p>
-												</div>
-											</div>
-										</div>
-									</div>
-									<div class="col-lg-4 col-sm-6 col-md-6">
-										<div class="portfolio-content">
-											<a class="popup-youtube" href="https://nurayni.github.io/Bindu/">
-												<div class="portfolio-image">
-													<img src="assets/images/10.png" alt="" class="img-fluid">
-												</div>
-											</a>
-											<hr>
-											<div class="portfolio-inner">
-												<h4>Startup Website</h4>
-												<div class="cart">
-													<p><a href="https://nurayni.github.io/Bindu/">Preview→</a>
-													</p>
-												</div>
-											</div>
-										</div>
-									</div>
-									<div class="col-lg-4 col-sm-6 col-md-6">
-										<div class="portfolio-content">
-											<a class="popup-youtube" href="https://ripab.github.io/ecoiit2.github/">
-												<div class="portfolio-image">
-													<img src="assets/images/11.png" alt="" class="img-fluid">
-												</div>
-											</a>
-											<hr>
-											<div class="portfolio-inner">
-												<h4>E-commerce Website</h4>
-												<div class="cart">
-													<p><a href="https://ripab.github.io/ecoiit2.github/">Preview→</a>
-													</p>
-												</div>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-							<div class="tab-pane" id="settings" role="tabpanel" aria-labelledby="settings-tab">
-								<div class="row justify-content-center">
-									<div class="col-lg-4 col-sm-6 col-md-6">
-										<div class="portfolio-content">
-											<a class="popup-youtube" href="https://nurayni.github.io/charity2/">
-												<div class="portfolio-image">
-													<img src="assets/images/5.png" alt="" class="img-fluid">
-												</div>
-											</a>
-											<hr>
-											<div class="portfolio-inner">
-												<h4>Charity Portfolio</h4>
-												<div class="cart">
-													<p><a href="https://nurayni.github.io/charity2/">Preview→</a>
-													</p>
-												</div>
-											</div>
-										</div>
-									</div>
-									<div class="col-lg-4 col-sm-6 col-md-6">
-										<div class="portfolio-content">
-											<a class="popup-youtube" href="https://netmg.delwarit.com/">
-												<div class="portfolio-image">
-													<img src="assets/images/6.png" alt="" class="img-fluid">
-												</div>
-											</a>
-											<hr>
-											<div class="portfolio-inner">
-												<h4>Inventory Website</h4>
-												<div class="cart">
-													<p><a href="https://netmg.delwarit.com/">Preview→</a>
-													</p>
-												</div>
-											</div>
-										</div>
-									</div>
-									<div class="col-lg-4 col-sm-6 col-md-6">
-										<div class="portfolio-content">
-											<a class="popup-youtube" href="https://sylhetsmartcity.com/Sarbojonin.com">
-												<div class="portfolio-image">
-													<img src="assets/images/7.png" alt="" class="img-fluid">
-												</div>
-											</a>
-											<hr>
-											<div class="portfolio-inner">
-												<h4>E-commerce Website</h4>
-												<div class="cart">
-													<p><a href="https://sylhetsmartcity.com/Sarbojonin.com">Preview→</a>
-													</p>
-												</div>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-							<div class="tab-pane" id="area" role="tabpanel" aria-labelledby="area-tab">
-								<div class="row justify-content-center">
-									<div class="col-lg-4 col-sm-6 col-md-6">
-										<div class="portfolio-content">
-											<a class="popup-youtube" href="https://nurayni.github.io/Personal/">
-												<div class="portfolio-image">
-													<img src="assets/images/9.png" alt="" class="img-fluid">
-												</div>
-											</a>
-											<hr>
-											<div class="portfolio-inner">
-												<h4>Portfolio Website</h4>
-												<div class="cart">
-													<p><a href="https://nurayni.github.io/Personal/">Preview→</a>
-													</p>
-												</div>
-											</div>
-										</div>
-									</div>
-									<div class="col-lg-4 col-sm-6 col-md-6">
-										<div class="portfolio-content">
-											<a class="popup-youtube" href=" https://nurayni.github.io/Bindu/">
-												<div class="portfolio-image">
-													<img src="assets/images/10.png" alt="" class="img-fluid">
-												</div>
-											</a>
-											<hr>
-											<div class="portfolio-inner">
-												<h4>Startup Website</h4>
-												<div class="cart">
-													<p><a href="https://nurayni.github.io/Bindu/">Preview→</a>
-													</p>
-												</div>
-											</div>
-										</div>
-									</div>
-									<div class="col-lg-4 col-sm-6 col-md-6">
-										<div class="portfolio-content">
-											<a class="popup-youtube" href="https://ripab.github.io/ecoiit2.github/">
-												<div class="portfolio-image">
-													<img src="assets/images/11.png" alt="" class="img-fluid">
-												</div>
-											</a>
-											<hr>
-											<div class="portfolio-inner">
-												<h4>E-commerce Website</h4>
-												<div class="cart">
-													<p><a href="https://ripab.github.io/ecoiit2.github/">Preview→</a>
-													</p>
-												</div>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div> -->
 						</div>
 					</div>
 				</div>
@@ -343,22 +178,22 @@ Portfolio Area CSS
 		</div>
 	</section>
 	<!--End Portfolio area-->
-	<section class="project-wrapper-area">
-		<div class="project-wrap">
-			<div class="container">
-				<div class="row">
-					<div class="col-md-12">
-						<div class="project-information text-center">
-							<h5>01722892349</h5>
-							<h2>Start a project with us!</h2>
-							<div class="project-box"> <a href="project.html" class="default">Start a project</a>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</section>
+	<!--<section class="project-wrapper-area">-->
+	<!--	<div class="project-wrap">-->
+	<!--		<div class="container">-->
+	<!--			<div class="row">-->
+	<!--				<div class="col-md-12">-->
+	<!--					<div class="project-information text-center">-->
+	<!--						<h5>01722892349</h5>-->
+	<!--						<h2>Start a project with us!</h2>-->
+	<!--						<div class="project-box"> <a href="project.html" class="default">Start a project</a>-->
+	<!--						</div>-->
+	<!--					</div>-->
+	<!--				</div>-->
+	<!--			</div>-->
+	<!--		</div>-->
+	<!--	</div>-->
+	<!--</section>-->
 	<!-- Links of JS file -->
 	<script src="{{ asset('public/frontend/assets/js/bootstrap.bundle.min.js')}}"></script>
 	<script src="{{ asset('public/frontend/assets/js/jquery.min.js')}}"></script>

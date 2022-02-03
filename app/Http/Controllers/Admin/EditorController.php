@@ -19,10 +19,19 @@ class EditorController extends Controller
 
     public function index()
     {
-        $editors =  user::where('is_editor',0)->get();
+        $editors =  user::where('is_editor',1)->get();
+        $count = 1;
+        return view('admin.editor.index_editor',compact('editors','count'));
+    }
+   
+
+    public function newEditors()
+    {
+        $editors =user::where('is_editor',0)->get();
         $count = 1;
         return view('admin.editor.new_editors',compact('editors','count'));
     }
+
 
     public function profile()
     {
@@ -116,8 +125,22 @@ class EditorController extends Controller
 
     public function active(User $user)
     {
+        $user->update(['is_editor' => 1]);
+        if($user){
+            return redirect()->back()->with('success', 'User Activate Successfully');
+        }else{
+            return redirect()->back()->with('wrong', 'Something went wrong!!');
+        }
+    } 
+
+    public function deactive(User $user)
+    {
         $user->update(['is_editor' => 2]);
-        return $user;
+        if($user){
+            return redirect()->back()->with('success', 'User Deactivate Successfully');
+        }else{
+            return redirect()->back()->with('wrong', 'Something went wrong!!');
+        }
     }
 
     public function delete(user $user)
@@ -134,28 +157,9 @@ class EditorController extends Controller
         }
     }
 
-    
-    public function deactive(User $editor)
-    {
-        $editor->update(['status' => 0]);
-        if($editor){
-            return redirect()->back()->with('success', 'user Deactivate Successfully');
-        }else{
-            return redirect()->back()->with('wrong', 'Something went wrong!!');
-        }
-    }
+ 
 
-    public function deactiveList()
-    {
-        $users =user::where('status',0)->get();
-        return view('admin.user.deactive_user',compact('users'));
-    }
 
-    public function activeList()
-    {
-        $users =user::where('status',1)->get();
-        return view('admin.user.user_deactive',compact('users'));
-    }
 
 
 }

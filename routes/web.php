@@ -5,7 +5,6 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PublicController;
 use App\Http\Controllers\Admin\AdminController;
-use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\CourseController;
 use App\Http\Controllers\Admin\BatchController;
@@ -23,12 +22,15 @@ use App\Http\Controllers\Admin\PortfolioController;
 use App\Http\Controllers\Admin\ServiceController;
 use App\Http\Controllers\Admin\EditorController;
 use App\Http\Controllers\Admin\CareerController;
+use App\Http\Controllers\Admin\TeamController;
 use App\Http\Controllers\User\ProjectController;
+use App\Http\Controllers\User\BlogcommentController;
 use App\Http\Controllers\StudentController;
 
 
 
 /*
+|
 |--------------------------------------------------------------------------
 | Web Routes
 |--------------------------------------------------------------------------
@@ -43,6 +45,24 @@ use App\Http\Controllers\StudentController;
 Route::get('/layouts', function () {
     return view('admin.layouts.app');
 });
+Route::get('/linksss', function () {
+    Artisan::call('migrate');
+    return 'success';
+});
+
+Route::get('/team', function () {
+    return view('team')->name('team');
+});
+Route::get('/software', function () {
+    return view('software');
+});
+Route::get('/newcourses', function () {
+    return view('newcourses');
+});
+Route::get('/streview', function () {
+    return view('streview');
+});
+
 
 Route::get('/home', [PublicController::class, 'index'])->name('/');
 Route::get('/', [PublicController::class, 'index'])->name('/');
@@ -68,7 +88,15 @@ Route::get('/services/{service}', [PublicController::class, 'serviceSingle'])->n
 Route::get('/addmission-procedure', [PublicController::class, 'addmissionProcedure'])->name('addmission.procedure');
 
 Route::get('/blogs', [PublicController::class, 'blogs'])->name('blogs');
-Route::get('/single-blog/{blog}', [PublicController::class, 'singleBlog'])->name('single.blog');
+Route::get('/all-blogs', [PublicController::class, 'latestBlogs'])->name('latest.blogs');
+Route::get('/archieve-month/{achieve}', [PublicController::class, 'archieveMonth'])->name('archieve.month');
+
+
+Route::get('/team-member', [PublicController::class, 'team'])->name('team');
+
+
+Route::get('/blogs/{blogcate}', [PublicController::class, 'categoryBlogs'])->name('category.blogs');
+Route::get('/blog/{blog}', [PublicController::class, 'singleBlog'])->name('single.blog');
 
 Route::get('/contact', [PublicController::class, 'contact'])->name('contact');
 Route::post('/create-new-contact', [PublicController::class, 'createContact'])->name('create.contact');
@@ -79,9 +107,6 @@ Route::post('/start-a-new-project', [ProjectController::class, 'createnewProject
 
 
 Route::get('/logout', [HomeController::class, 'logout'])->name('logout');
-Route::get('/single-product/{slug}', [PublicController::class, 'singleProduct'])->name('single.product');
-Route::get('/brand-product/{slug}', [PublicController::class, 'brandProduct'])->name('brand.product');
-Route::get('/category-product/{slug}', [PublicController::class, 'categoryProduct'])->name('category.product');
 Route::get('/shop', [PublicController::class, 'shop'])->name('shop');
 Route::post('/search-result', [PublicController::class, 'search'])->name('search');
 Auth::routes();
@@ -91,6 +116,19 @@ Route::get('/user-profile', [EditorController::class, 'profile'])->name('user.pr
 Route::get('/add-profile', [EditorController::class, 'create'])->name('create.userdetail');
 Route::post('/store-profile', [EditorController::class, 'store'])->name('store.userdetail');
 Route::post('/update-profile/{userdetail}', [EditorController::class, 'update'])->name('update.userdetail');
+
+
+Route::middleware(['auth'])->group(function () {
+
+Route::get('/career-apply-form-{career}', [PublicController::class, 'careerApply'])->name('career.apply');
+Route::post('/career-apply-now', [PublicController::class, 'careerApplication'])->name('career.application');
+
+//COMMENT FOR BLOG
+Route::post('/blog-comment', [BlogcommentController::class, 'store'])->name('blog.comment');
+Route::get('/blog-comment-delete/{blogcomment}', [BlogcommentController::class, 'delete'])->name('blog.comment.delete');
+
+
+
 
 Route::middleware(['auth', 'editor'])->group(function () {
 
@@ -107,7 +145,7 @@ Route::middleware(['auth', 'admin'])->group(function () {
 	Route::get('/delete-editor/{user}', [EditorController::class, 'delete'])->name('delete.editor');
 	Route::get('/active-editor/{user}', [EditorController::class, 'active'])->name('active.editor');
 	Route::get('/deactive-editor/{user}', [EditorController::class, 'deactive'])->name('deactive.editor');
-	Route::get('/deactive-editor-list', [EditorController::class, 'deactiveList'])->name('deactive.editor.list');
+	Route::get('/deactive-editor-list', [EditorController::class, 'newEditors'])->name('deactive.editor.list');
 
 
     //EDITORS ROUTE
@@ -200,6 +238,14 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::post('/update/district/{district}', [DistrictController::class, 'update'])->name('update.district');
     Route::get('/delete/district/{district}', [DistrictController::class, 'delete'])->name('delete.district');
 
+
+
+	//TEAM ROUTES
+    Route::get('/team', [TeamController::class, 'index'])->name('admin.team');
+    Route::post('/create-team', [TeamController::class, 'create'])->name('create.team');
+    Route::post('/update-team/{team}', [TeamController::class, 'update'])->name('update.team');
+    Route::get('/delete-team/{team}', [TeamController::class, 'delete'])->name('delete.team');
+
     //FREELANCERS ROUTES
 	Route::get('/list-freelancer', [FreelancerController::class, 'index'])->name('index.freelancer');
 	Route::get('/create-freelancer', [FreelancerController::class, 'create'])->name('create.freelancer');
@@ -226,6 +272,7 @@ Route::middleware(['auth', 'admin'])->group(function () {
     //CAREER ROUTES
 	Route::get('/list-career', [CareerController::class, 'index'])->name('index.career');
 	Route::get('/create-career', [CareerController::class, 'create'])->name('create.career');
+	Route::get('/view-career/{career}', [CareerController::class, 'view'])->name('view.career');
 	Route::post('/store-career', [CareerController::class, 'store'])->name('store.career');
 	Route::get('/edit-career/{career}', [CareerController::class, 'edit'])->name('edit.career');
 	Route::post('/update-career/{career}', [CareerController::class, 'update'])->name('update.career');
@@ -235,10 +282,14 @@ Route::middleware(['auth', 'admin'])->group(function () {
 	Route::get('/deactive-career-list', [CareerController::class, 'deactiveList'])->name('deactive.career.list');
 
 
+	Route::get('/delete-career-applicant/{careerapply}', [CareerController::class, 'deleteApplicant'])->name('delete.career.applicant');
+	Route::get('/active-career-applicant/{careerapply}', [CareerController::class, 'activeApplicant'])->name('active.career.applicant');
+	Route::get('/deactive-career-applicant/{careerapply}', [CareerController::class, 'deactiveApplicant'])->name('deactive.career.applicant');
+	Route::get('/deactive-career-applicant-list', [CareerController::class, 'deactiveApplicantList'])->name('deactive.career.applicant.list');
+	Route::get('/view-career-applicant/{applicant}', [CareerController::class, 'viewApplicant'])->name('view.career.applicant');
 
 
-
-
+	Route::get('/career-applied-list', [CareerController::class, 'careerApplied'])->name('career.applied.list');
 
     
 
@@ -313,4 +364,5 @@ Route::middleware(['auth', 'admin'])->group(function () {
 
 Route::get('/fetch-district/{id}', [FreelancerController::class,'fetchDist']);
 
+});
 });

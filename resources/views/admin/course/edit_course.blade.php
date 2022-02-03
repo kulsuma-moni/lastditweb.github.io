@@ -59,7 +59,7 @@
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label for="description" class="col-3 col-form-label">Description *</label>
+                            <label for="description" id="editor1" class="col-3 col-form-label">Description *</label>
                             <div class="col-9">
                                 <textarea name="description" class="form-control @error('description') is-invalid @enderror" cols="30" rows="10">{{ $course->description }}</textarea>
                                 @error('description')
@@ -161,6 +161,13 @@
 <script>
     ClassicEditor
         .create(document.querySelector('#editor'))
+        .catch(error => {
+            console.error(error);
+        });
+</script>
+<script>
+    ClassicEditor
+        .create(document.querySelector('#editor1'))
         .catch(error => {
             console.error(error);
         });

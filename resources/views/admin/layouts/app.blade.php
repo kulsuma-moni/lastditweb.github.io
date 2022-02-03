@@ -135,6 +135,7 @@
                             <ul class="nav-second-level" aria-expanded="false">
                                 <li><a href="{{ route('create.career') }}">Add</a></li>
                                 <li><a href="{{ route('index.career') }}">All</a></li>
+                                <li><a href="{{ route('career.applied.list') }}">Applied</a></li>
                             </ul>
                         </li>
 
@@ -159,7 +160,8 @@
                             <a href="javascript: void(0);"><i class="fa-solid fa-users-gear"></i> <span> Editors </span> <span class="menu-arrow"></span></a>
                             <ul class="nav-second-level" aria-expanded="false">
                                 {{-- <li><a href="{{ route('index.editor') }}">Editors</a></li> --}}
-                                <li><a href="{{ route('index.editor') }}">New Applied Editors</a></li>
+                                <li><a href="{{ route('deactive.editor.list') }}">New Applied Editors</a></li>
+                                <li><a href="{{ route('index.editor') }}">Active Editors</a></li>
                             </ul>
                         </li>
 
@@ -227,11 +229,13 @@
                         </li>
 
 
+                        @if(Auth::user()->is_admin == 1)
                         <li>
                             <a href="{{ route('setting') }}">
                                 <i class="fa-solid fa-gear"></i> <span>Settings </span>
                             </a>
                         </li>
+                        @endif
                         @endif
 
                     </ul>
@@ -266,6 +270,14 @@
                                 <input type="text" placeholder="Search..." class="form-control">
                                 <button type="submit"><i class="fa fa-search"></i></button>
                             </form>
+                        </li>
+
+
+                        <li class="dropdown notification-list">
+                            <a class="nav-link arrow-none" target="_blank" href="{{ route('/') }}">
+                                <i class="fa fa-home noti-icon"></i>
+                                <span class="badge badge-success badge-pill noti-icon-badge">Home</span>
+                            </a>
                         </li>
 
                         <li class="dropdown notification-list">

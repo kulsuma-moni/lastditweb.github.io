@@ -50,14 +50,14 @@
                                                     <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password" placeholder="Confirm Password">
                                                 </div>
                                             </div>
-                                            <div class="row">
+                                          {{--   <div class="row">
                                                 <div class="col-lg-12">
                                                     <select class="form-select" name="is_editor" aria-label="Default select example">
-                                                        {{-- <option selected>User Type</option> --}}
+                                                        <option selected>User Type</option>
                                                         <option value="1">Editor</option>
                                                     </select>
                                                 </div>
-                                            </div>
+                                            </div> --}}
                                             <div class="row">
                                                 <div class="col-lg-12">
                                                     <div class="checkbox">

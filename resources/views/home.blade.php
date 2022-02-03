@@ -27,7 +27,7 @@ $setting = App\Models\Admin\Setting::first();
                   <div class="row align-items-center">
                      <div class="col-lg-5">
                         <div class="banner-content">
-                           <h1>Digitalized Up Your Business With <span>Delwar IT</span></h1>
+                           <h1 class="type_txt"></h1>
                            <div class="em-bar-main">
                               <div class="em-bar em-bar-big"></div>
                            </div>
@@ -60,7 +60,7 @@ $setting = App\Models\Admin\Setting::first();
                      </div>
                      <div class="col-lg-5">
                         <div class="banner-content">
-                           <h1>Digitalized Up Your Business With <span>Delwar IT</span></h1>
+                           <h1 class="type_txt"></h1>
                            <div class="em-bar-main">
                               <div class="em-bar em-bar-big"></div>
                            </div>
@@ -326,7 +326,7 @@ $setting = App\Models\Admin\Setting::first();
                      <div class="card-deck">
                         <a href="#0">
                            <div class="card-body-one">
-                                 <img style="width:100%;" src="{{ asset('storage/app/public/'.$portfoliocate->image) }}" alt="">
+                                 <img src="{{ asset('storage/app/public/'.$portfoliocate->image) }}" alt="">
                               <p class="popular-categories-link">{{ $portfoliocate->name }}<br>Software</p>
                            </div>
                         </a>
@@ -446,99 +446,59 @@ $setting = App\Models\Admin\Setting::first();
                          <div class="item">
                            <div class="testimonial">
                               <div class="testimonial-content">
-                                  <p>1Lorem ipsum dolor sit amet, consectetur adipisicing elit. Assumenda deleniti dolor ipsum
-                                      molestias mollitia ut. Aliquam aperiam corporis cumque debitis delectus dignissimos.
-                                      Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                                  <p>Delwar iT is the best it center for Freelancing.They are really friendly and talented.I just love be there. Thats why i want to be there.
                                   </p>
                               </div>
                              <div class="testimonial-info">
                                  <div class="pic">
-                                     <img src="{{ asset('public/frontend/assets/images/commentor_1.png') }}">
+                                     <img src="{{ asset('public/frontend/assets/images/mst_ayesha.jpg') }}">
                                  </div>
-                                 <h3 class="testimonial-title">krystal <br><span>Web Developer</span></h3>
+                                 <h3 class="testimonial-title">MST. Aysha Akther<br><span>Student</span></h3>
                              </div>
                           </div>
                          </div>
-						 <div class="item">
-							<div class="testimonial">
-								<div class="testimonial-content">
-									<p>2Lorem ipsum dolor sit amet, consectetur adipisicing elit. Assumenda deleniti dolor ipsum
-										molestias mollitia ut. Aliquam aperiam corporis cumque debitis delectus dignissimos.
-										Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-									</p>
-								</div>
-								<div class="testimonial-info">
-									<div class="pic">
-										<img src="{{ asset('public/frontend/assets/images/commentor_2.png') }}">
-									</div>
-									<h3 class="testimonial-title">krystal <br><span>Web Developer</span></h3>
-								</div>
-							</div>
-						 </div>
-						 <div class="item">
-							<div class="testimonial">
-								<div class="testimonial-content">
-									<p>3Lorem ipsum dolor sit amet, consectetur adipisicing elit. Assumenda deleniti dolor ipsum
-										molestias mollitia ut. Aliquam aperiam corporis cumque debitis delectus dignissimos.
-										Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-									</p>
-								</div>
-								<div class="testimonial-info">
-									<div class="pic">
-										<img src="{{ asset('public/frontend/assets/images/commentor_3.png') }}">
-									</div>
-									<h3 class="testimonial-title">krystal <br><span>Web Developer</span></h3>
-								</div>
-							</div>
-						 </div>
-						 <div class="item">
-							<div class="testimonial">
-								<div class="testimonial-content">
-									<p>4Lorem ipsum dolor sit amet, consectetur adipisicing elit. Assumenda deleniti dolor ipsum
-										molestias mollitia ut. Aliquam aperiam corporis cumque debitis delectus dignissimos.
-										Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-									</p>
-								</div>
-							   <div class="testimonial-info">
-								   <div class="pic">
-									   <img src="{{ asset('public/frontend/assets/images/commentor_1.png') }}">
-								   </div>
-								   <h3 class="testimonial-title">krystal <br><span>Web Developer</span></h3>
-							   </div>
-								</div>
-						 </div>
-						 <div class="item">
-							<div class="testimonial">
-								<div class="testimonial-content">
-								   <p>5Lorem ipsum dolor sit amet, consectetur adipisicing elit. Assumenda deleniti dolor ipsum
-									  molestias mollitia ut. Aliquam aperiam corporis cumque debitis delectus dignissimos.
-									  Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-								   </p>
-								</div>
-								<div class="testimonial-info">
-								   <div class="pic">
-									  <img src="{{ asset('public/frontend/assets/images/commentor_2.png') }}">
-								   </div>
-								   <h3 class="testimonial-title">krystal <br><span>Web Developer</span></h3>
-								</div>
-						  </div>
-						 </div>
-						 <div class="item">
-							<div class="testimonial">
-								<div class="testimonial-content">
-								   <p>6Lorem ipsum dolor sit amet, consectetur adipisicing elit. Assumenda deleniti dolor ipsum
-									  molestias mollitia ut. Aliquam aperiam corporis cumque debitis delectus dignissimos.
-									  Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-								   </p>
-								</div>
-								<div class="testimonial-info">
-								   <div class="pic">
-									  <img src="{{ asset('public/frontend/assets/images/commentor_3.png') }}">
-								   </div>
-								   <h3 class="testimonial-title">krystal <br><span>Web Developer</span></h3>
-								</div>
-						  </div>
-						 </div>
+      						 <div class="item">
+      							<div class="testimonial">
+      								<div class="testimonial-content">
+      									<p>In my opinion,Delwar IT is one of the best institution in Sylhet..Their Education strategy is too easy that who have zero idea about Freelancing they can get full idea from here.
+      									</p>
+      								</div>
+      								<div class="testimonial-info">
+      									<div class="pic">
+      										<img src="{{ asset('public/frontend/assets/images/amjad_hussain.jpg') }}">
+      									</div>
+      									<h3 class="testimonial-title">Amjad Hussain Rifat <br><span>Student</span></h3>
+      								</div>
+      							</div>
+      						 </div>
+      						 <div class="item">
+      							<div class="testimonial">
+      								<div class="testimonial-content">
+      									<p>আমি এই দশদিনের ক্লাসে উপলব্ধি করলাম যে, দেলোয়ার আইটি শুধু প্রশিক্ষণ দেয় না ছাত্র-ছাত্রীদের সাথে বন্ধুত্বপূর্ণ হাত বাড়িয়ে তার কর্মজীবন শুরু করার পথ প্রদর্শন করে।
+      									</p>
+      								</div>
+      							   <div class="testimonial-info">
+      								   <div class="pic">
+      									   <img src="{{ asset('public/frontend/assets/images/shubro_das.jpg') }}">
+      								   </div>
+      								   <h3 class="testimonial-title">বিপ্রপদ দাস শুভ্র <br><span>Student</span></h3>
+      							   </div>
+      								</div>
+      						 </div>
+                         <div class="item">
+                           <div class="testimonial">
+                              <div class="testimonial-content">
+                                 <p>দেলোয়ার আইটির ফ্রি দশদিন এর ক্লাস করে আমি ইন্টারনেট জগতের অনেক অজানা বিষয় জানতে পারি। আলহামদুলিল্লাহ এ দশদিন এর ক্লাস করেই আমি আমাকে উৎসাহ দিতে শিখেছি কিভাবে  কি করে বেকারত্বের অভিশাপ থেকে নিজেকে মুক্তি দেওয়া যায়। এজন্য অসংখ্যা ধন্যবাদ দেলোয়ার আইটিকে।
+                                 </p>
+                              </div>
+                              <div class="testimonial-info">
+                                 <div class="pic">
+                                    <img src="{{ asset('public/frontend/assets/images/commentor_2.png') }}">
+                                 </div>
+                                 <h3 class="testimonial-title">Syeda juhra khatun<br><span>Student</span></h3>
+                              </div>
+                           </div>
+                         </div>
                       </div>
                   </div>
               </div>

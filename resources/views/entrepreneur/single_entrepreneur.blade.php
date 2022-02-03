@@ -1,9 +1,8 @@
 @extends('layouts.app')
 
-@section('title','Delwarit | '{{-- .$entrepreneur->name --}})
+@section('title','Delwarit | '.$entrepreneur->name)
 
 @section('content')
-
 
 <section class="single-banner-wrapper">
         <div class="job-wrap">
